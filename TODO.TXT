@@ -8,4 +8,7 @@ Bis M1 (zwischen einschließlich 26.04. und 28.04.):
 
 #### SQL ####
 - Implementation EERM
+
+#### Deadline ####
+- bis 25.4
 __________________________________________________
