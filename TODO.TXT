@@ -1,1 +1,11 @@
+Bis M1 (zwischen einschließlich 26.04. und 28.04.):
 
+#### Präsentation ####
+- max 8 Folien; max 10 min
+
+#### Dokumentation ####
+- EERM Diagramm (min 6 Entitäten mit Vererbung)
+
+#### SQL ####
+- Implementation EERM
+__________________________________________________
