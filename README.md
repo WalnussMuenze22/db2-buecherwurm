@@ -25,12 +25,13 @@ Don’ts:
 -Reklamation (zu viel Aufwand)
 
 **Verteilte Aufgaben bis nächsten Sonntag 17.04.22:**
--Lastenheft Recherche  					            Sven
--Dokumentation						                Sven
--Erstellung und Verwaltung des Git Repos			Dennis
--Vorbereitung/Planung der Präsentation			    Jesaja, Sven
--Erstellung des Webservers 					        Dennis
--Backend mit PHP						            Jesaja
+- Lastenheft Recherche  Sven
+- Dokumentation         Sven
+- Erstellung und Verwaltung des Git Repos   Dennis
+- Vorbereitung/Planung der Präsentation     Jesaja,Sven
+- Erstellung des Webservers                 Dennis
+- Backend mit PHP			                Jesaja	  
+              
 **Aufgabe für **jeden**: EERM + Use Case Diagramm erstellen**
 
 
