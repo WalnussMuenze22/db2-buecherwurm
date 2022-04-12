@@ -2,7 +2,37 @@
 
 Ein phänomenaler Bücherwurm der Generation X!
 
-## Getting started
+## Team Meeting Protokoll vom 12.04.2022
+
+Projektidee: Online Buchhandel über eine interaktive Webseite
+
+Besprochenen Bestandteile des EERM:
+1.	Artikel -> Hörbücher, Bücher
+2.	Kunden
+2.1	Kundenbestellungen
+2.2	Lagerbestand
+3.	Einkäufe
+4.	Statistiken (Wochen/Monats-Gesamtumsatz/Verlust, Gesamtausgaben Kunden, Verkaufszahlen der Bücher, Top 10 meist verkaufte Bücher)
+
+Features oder SchnickSchnack:
+-Karteileichen entfernen
+-Tabelle für Steuersätze
+-Treuepunkte
+-Tabelle für Fehlercodes
+
+Don’ts:
+-Warenkorb
+-Reklamation (zu viel Aufwand)
+
+Verteilte Aufgaben bis nächsten Sonntag 17.04.22:
+-Lastenheft Recherche  					            Sven
+-Dokumentation						                Sven
+-Erstellung und Verwaltung des Git Repos			Dennis
+-Vorbereitung/Planung der Präsentation			    Jesaja, Sven
+-Erstellung des Webservers 					        Dennis
+-Backend mit PHP						            Jesaja
+Aufgabe für jeden: EERM + Use Case Diagramm erstellen
+
 
 To make it easy for you to get started with GitLab, here's a list of recommended next steps.
 
