@@ -28,7 +28,7 @@ Don’ts:
 - Lastenheft Recherche  Sven
 - Dokumentation         Sven
 - Erstellung und Verwaltung des Git Repos   Dennis
-- Vorbereitung/Planung der Präsentation     Jesaja,Sven
+- Vorbereitung/Planung der Präsentation     Caner,Sven
 - Erstellung des Webservers                 Dennis
 - Backend mit PHP			                Jesaja	  
               
