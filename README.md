@@ -2,6 +2,13 @@
 
 Ein phänomenaler Bücherwurm der Generation X!
 
+## Team Meeting Protokoll vom 17.04.2022
+
+Erarbeitung des EERMs
+
+Folgetermin: 18.04.22 14 Uhr - Backendtreffen und Use Case Diagramm 
+
+
 ## Team Meeting Protokoll vom 12.04.2022
 
 Projektidee: Online Buchhandel über eine interaktive Webseite
