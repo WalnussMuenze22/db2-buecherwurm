@@ -2,6 +2,33 @@
 
 Ein phänomenaler Bücherwurm der Generation X!
 
+## Team Meeting Protokoll vom 20.04.2022
+
+Trigger:  
+-Bei anlegen von Bestellposition -> Preis und Steuersatz kopieren 
+- 1 x pro Woche aufrufen -> Wochen-Gesamtumsatz/Verlust 
+- 1x pro Monat aufrufen -> Monats-Gesamtumsatz/Verlust, - Bei neuer Bestellposition Funktion Verkaufszahlen der Bücher aufrufen 
+- 1x Monat -> Wachstumsrate Verkäufe von Artikeln ermitteln (eigene Tabelle) 
+- 1x Monat -> Funktion Karteileichen entfernen 
+
+Funktionen: 
+- Wochen-Gesamtumsatz/Verlust 
+- Monats-Gesamtumsatz/Verlust 
+- (wird von View aufgerufen) Gesamtausgaben Kunden - Verkaufszahlen der Bücher 
+- Top 10 Artikel 
+- Karteileichen entfernen. Wenn Account 2 Jahre nicht genutzt, dann löschen 
+- Wachstumsrate Verkäufe von Artikeln ermitteln (eigene Tabelle) 
+
+View:  
+- Kunden mit ihrem Umsatz 
+- Instead-Of-Trigger: Wichtigste (aktuelle) Inhalte (Key/Value) 
+
+@Caner ner wir haben noch folgende Tabellen angepasst: 
++ Account.letzterLogin 
+- Sprecher.Vorname 
++ 4x Statistik Tabellen
+
+
 ## Team Meeting Protokoll vom 17.04.2022
 
 Erarbeitung des EERMs
