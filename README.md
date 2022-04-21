@@ -2,7 +2,37 @@
 
 Ein phänomenaler Bücherwurm der Generation X!
 
+## Team Meeting 
+
+Besprechung und Aufteilung der Trigger und Funktionen
+
+Trigger:
+- Preis der Bestellposition einer Bestellung hinzufügen (BEI: Erstellung einer Bestellposition) --> Jesaja
+- entfernte Accounts archivieren (BEI: Entfernen eines bestehenden Accounts) -->Dennis
+- Waren werden der Nachbestelltabelle hinzugefügt(BEI:zu wenig Stückzahlen **Mindestbestand** nach/bei Kauf -->Caner
+-Autoren von entfernten Artikeln löschen (Autoren ohne Buch) BEI: Löschung des Artikels aus dem Sortiment -> „hat Autor überhaupt noch Artikel?“ -->Leo
+- WENN: es ein meistverkauftes Buch letzten Monat gab DANN: erhöhe **Mindestbestand**
+- Bestand bei Bestellung verringern WENN: Bestellstatus : OFFEN  --> Sven 
+
+- NOCH OFFEN : -WENN: es ein meistverkauftes Buch letzten Monat gab DANN: erhöhe **Mindestbestand**
+
+Funktionen
+- Karteileichen entfernen (Wann, löschen oder inaktiv schalten?) --> Leo
+- Statistiken ausgeben (Scheduler?) --> Dennis
+- Den Umsatz in einem bestimmten Zeitraum zurückgeben  --> Sven
+- Mindestbestand der Artikel anhand der Verkaufszahlen des letzten Monats erhöhen/vermindern --> Jesaja
+- Alle Kunden, die eine offene Bestellung haben ausgeben lassen --> Caner
+
+
+Aufgaben:
+Sven : Dokumentation und Präsentation
+Jeder:  Planung der Trigger und Funktionen
+        Ziele und Umfang (Do's und Don'ts) des Projekts verfassen
+
 ## Team Meeting Protokoll vom 20.04.2022
+
+
+
 
 Trigger:  
 -Bei anlegen von Bestellposition -> Preis und Steuersatz kopieren 
