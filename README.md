@@ -2,7 +2,7 @@
 
 Ein phänomenaler Bücherwurm der Generation X!
 
-## Team Meeting 
+## Team Meeting vom 21.04.2022
 
 Besprechung und Aufteilung der Trigger und Funktionen
 
@@ -23,6 +23,8 @@ Funktionen
 - Mindestbestand der Artikel anhand der Verkaufszahlen des letzten Monats erhöhen/vermindern --> Jesaja
 - Alle Kunden, die eine offene Bestellung haben ausgeben lassen --> Caner
 
+
+**View & INSTEAD-OF-Trigger :** Buchdaten (Alle Informationen)
 
 Aufgaben:
 Sven : Dokumentation und Präsentation
