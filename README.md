@@ -31,6 +31,8 @@ Sven : Dokumentation und Präsentation
 Jeder:  Planung der Trigger und Funktionen
         Ziele und Umfang (Do's und Don'ts) des Projekts verfassen
 
+
+nächstes Teamtreffen Samstag 23.04.2022 17 Uhr
 ## Team Meeting Protokoll vom 20.04.2022
 
 
