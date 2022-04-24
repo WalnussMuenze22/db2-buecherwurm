@@ -2,6 +2,28 @@
 
 Ein phänomenaler Bücherwurm der Generation X!
 
+#Team Meeting vom 24.04.2022
+
+Dokumentation und Präsentation wurden erstellt
+
+
+Präsentationsanteile wurden verteilt:
+
+| Name | Folien |
+| ------ | ------ |
+| Sven | 1 -3  |
+| Jesaja | 4 |
+|Dennis|5|
+|Leo|6|
+|Caner |7|
+|Jesaja|8|
+
+
+
+nächstes Meeting: 25.04.2022 (Generalprobe)
+Aufgabe bis dahin für jeden:
+Stichpunkte zu seinen eigenen Folien machen
+
 ## Team Meeting vom 21.04.2022
 
 Besprechung und Aufteilung der Trigger und Funktionen
