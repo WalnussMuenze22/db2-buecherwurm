@@ -1,0 +1,11 @@
+purgeAutor ersetzen durch folgenden Trigger:
+
+Event: Table Account INSERT
+Action: Gebe Meldung auf die Konsole aus, dass Kunde mit ID ... von DB Account ... erstellt wurde (+ Uhrzeit ?)
+
+
+Funktionen ersetzen:
+
+showCustomersOfPendingOrders -> (gibt alternativen Surrogate Key als BestellungsID zurück)
+purgeInacteCustomer -> (Email an Kunden, dass er zu lange inaktiv war)
+showStatistics -> (Meistverkaufte Buch)
