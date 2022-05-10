@@ -54,7 +54,7 @@ CREATE TABLE Adresse (
     Hausnummer NUMBER,
     Postleitzahl NUMBER,
     Ort VARCHAR(255),
-    KundenID NUMBER FOREIGN KEY REFERENCES Kunde(KundenID)
+    KundenID NUMBER 
 );
 
 -- Tabelle Bestellpostion
@@ -206,3 +206,7 @@ ADD CONSTRAINT stattopartikel_artikel FOREIGN KEY (ArtikelID) REFERENCES Artikel
 -- Artikel - Nachbestellung (12)
 ALTER TABLE Nachbestellung
 ADD CONSTRAINT nachbestellung_artikel FOREIGN KEY (ArtikelID) REFERENCES Artikel (ArtikelID);
+
+-- Adresse - Kunde (13)
+Alter Table Adresse
+ADD CONSTRAINT adresse_kunde FOREIGN KEY (KundenID) REFERENCES Kunde (KundenID);
