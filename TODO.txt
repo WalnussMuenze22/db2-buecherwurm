@@ -1,3 +1,7 @@
+SQL File anpassen
+
+
+
 purgeAutor ersetzen durch folgenden Trigger:
 
 Event: Table Account INSERT
