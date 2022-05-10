@@ -53,7 +53,8 @@ CREATE TABLE Adresse (
     Strasse VARCHAR(255),
     Hausnummer NUMBER,
     Postleitzahl NUMBER,
-    Ort VARCHAR(255)
+    Ort VARCHAR(255),
+    KundenID NUMBER FOREIGN KEY REFERENCES Kunde(KundenID)
 );
 
 -- Tabelle Bestellpostion
