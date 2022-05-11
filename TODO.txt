@@ -1,9 +1,3 @@
-SQL File anpassen:
-
-KundenID als ForeignKey der Tabelle Adresse hinzufügen
-Attribut MindestAnzahl der Tabelle Artikel hinzufügen
-
-
 purgeAutor ersetzen durch folgenden Trigger:
 
 Event: Table Account INSERT
