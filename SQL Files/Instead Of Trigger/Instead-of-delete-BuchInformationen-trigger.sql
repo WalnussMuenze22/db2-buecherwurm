@@ -1,4 +1,4 @@
-CREATE OR REPLACE TRIGGER Buch_Informationen_Instead_Of_Delete
+CREATE OR REPLACE TRIGGER BuchInformationen_Instead_Of_Delete
     INSTEAD OF DELETE ON BuchInformationen
     FOR EACH ROW
 BEGIN
