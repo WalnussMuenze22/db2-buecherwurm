@@ -1,5 +1,5 @@
-CREATE OR REPLACE TRIGGER BuchInformationenInsteadOf
-    INSTEAD OF INSERT ON BuchInformationen
+CREATE OR REPLACE TRIGGER BuchInformationenInsteadOfInsert
+    INSTEAD OF INSERT OR UPDATE OR DELETE ON BuchInformationen
     FOR EACH ROW
 DECLARE
     v_artikelID NUMBER;
@@ -7,68 +7,255 @@ DECLARE
     v_verlagId NUMBER;
     
     v_helpCounter NUMBER;
+    
+    v_helpContains NUMBER;
+    
+    type t_MyVarcharTable is table of (Autor.Name%TYPE);
+    v_neueAutorenTabelle t_MyVarcharTable;
+    v_alteAutorenTabelle t_MyVarcharTable;
 BEGIN
-    -- Fügt falls nicht vorhanden den Autor hinzu und speichert die neue oder schon existierende autorID in der Variable v_autorID
-    SELECT COUNT(*)
-    INTO v_helpCounter
-    FROM Autor
-    WHERE Autor.Name = :NEW.Autor
-    ;
+    IF INSERTING THEN
+        dbms_output.put_line('TODO');
     
-    IF (v_helpCounter = 0) THEN
-        INSERT INTO Autor
-        (Name)
-        VALUES (:NEW.Autor)
-        RETURNING autorID INTO v_autorID
+    
+    
+    
+    ELSIF UPDATING THEN
+        -- Änderungen in der Tabelle Artikel
+        IF (:OLD.ArtikelID <> :NEW.ArtikelID)THEN
+            raise_application_error(-6502, 'ArtikelID is immutable!');
+        END IF;
+        
+        v_ArtikelID := :NEW.ArtikelID;
+        
+        IF (:OLD.Titel <> :NEW.Titel)THEN
+            UPDATE Artikel
+            SET Artikel.Titel = :NEW.Titel
+            ;
+        END IF;
+        
+        IF (:OLD.Preis <> :NEW.Preis)THEN
+            UPDATE Artikel
+            SET Artikel.Preis = :NEW.Preis
+            ;
+        END IF;
+        
+        IF (:OLD.Steuersatz <> :NEW.Steuersatz)THEN
+            UPDATE Artikel
+            SET Artikel.Steuersatz = :NEW.Steuersatz
+            ;
+        END IF;
+        
+        IF (:OLD.Beschreibung <> :NEW.Beschreibung)THEN
+            UPDATE Artikel
+            SET Artikel.Beschreibung = :NEW.Beschreibung
+            ;
+        END IF;
+        
+        IF (:OLD.ISBN <> :NEW.ISBN)THEN
+            UPDATE Artikel
+            SET Artikel.ISBN = :NEW.ISBN
+            ;
+        END IF;
+        
+        IF (:OLD.Erscheinungsdatum <> :NEW.Erscheinungsdatum)THEN
+            UPDATE Artikel
+            SET Artikel.Erscheinungsdatum = :NEW.Erscheinungsdatum
+            ;
+        END IF;
+        
+        IF (:OLD.Sprache <> :NEW.Sprache)THEN
+            UPDATE Artikel
+            SET Artikel.Sprache = :NEW.Sprache
+            ;
+        END IF;
+        
+        IF (:OLD.AnzahlVerfuegbar <> :NEW.AnzahlVerfuegbar)THEN
+            UPDATE Artikel
+            SET Artikel.AnzahlVerfuegbar = :NEW.AnzahlVerfuegbar
+            ;
+        END IF;
+        
+        IF (:OLD.MindestBestand <> :NEW.MindestBestand)THEN
+            UPDATE Artikel
+            SET Artikel.MindestBestand = :NEW.MindestBestand
+            ;
+        END IF;
+        
+        IF (:OLD.AnzahlVerkauft <> :NEW.AnzahlVerkauft)THEN
+            UPDATE Artikel
+            SET Artikel.AnzahlVerkauft = :NEW.AnzahlVerkauft
+            ;
+        END IF;
+        
+        
+        -- Änderungen in der Tabelle Buch
+        IF (:OLD.AnzahlSeiten <> :NEW.AnzahlSeiten) THEN
+            UPDATE Buch
+            SET AnzahlSeiten = :NEW.AnzahlSeiten;
+        END IF;
+        
+        
+        -- Referenz auf Verlag ändern und ggf. Verlag neu hinzufügen
+        IF (:OLD.Verlag <> :NEW.Verlag) THEN
+            -- Existiert Verlag in Datenbank?
+            SELECT COUNT(*)
+            INTO v_helpCounter
+            FROM Verlag
+            WHERE Verlag.Name = :NEW.Verlag
+            ;
+            
+            -- Verlag hinzufügen wenn er nicht existiert und ID in v_VerlagID speichern
+            IF (v_helpCounter = 0) THEN
+                INSERT INTO Verlag
+                (Name)
+                VALUES (:NEW.Verlag)
+                RETURNING VerlagID INTO v_VerlagID
+                ;
+            -- Verlag existiert und ID in v_VerlagID speichern
+            ELSE
+                SELECT Verlag.verlagID
+                INTO v_verlagId
+                FROM Verlag
+                WHERE Verlag.Name = :NEW.Verlag
+                ;
+            END IF;
+            
+            -- VerlagID dem Artikel hinzufügen
+            UPDATE Artikel
+            SET VerlagID = v_VerlagID
+            ;
+        END IF;
+        
+        
+        -- Referenzen auf Autoren ändern und ggf. Autoren hinzufügen 
+        IF (:OLD.AutorenListe <> :New.AutorenListe) THEN
+            -- Nested Table mit den Autoren von OLD für den Artikel
+            SELECT AutorName
+            BULK COLLECT INTO v_alteAutorenTabelle
+            FROM (
+                WITH alteAutorenTabelle
+                AS (
+                    SELECT :OLD.AutorenListe AS autorListeString
+                    FROM dual
+                )
+                SELECT REGEXP_SUBSTR (autorListeString, '[^#]+', 1, level) AutorName
+                FROM alteAutorenTabelle
+                CONNECT BY level <= length (autorListeString) - length (REPLACE(autorListeString, '#')) + 1
+            );
+            
+            
+            -- Nested Table mit den Autoren von NEW für den Artikel
+            SELECT AutorName
+            BULK COLLECT INTO v_neueAutorenTabelle
+            FROM (
+                WITH neueAutorenTabelle
+                AS (
+                    SELECT :NEW.AutorenListe AS autorListeString
+                    FROM dual
+                )
+                SELECT REGEXP_SUBSTR (autorListeString, '[^#]+', 1, level) AutorName
+                FROM neueAutorenTabelle
+                CONNECT BY level <= length (autorListeString) - length (REPLACE(autorListeString, '#')) + 1
+            );
+            
+            
+            -- Assoziation zwischen Autor und Artikel löschen, wenn Autor vom Artikel entfernt wurde
+            FOR a IN v_alteAutorenTabelle.FIRST .. v_alteAutorenTabelle.LAST
+            LOOP
+                -- Prüfen ob Autor bei NEW noch existiert
+                v_helpContains := 0;
+                FOR n IN v_neueAutorenTabelle.FIRST .. v_neueAutorenTabelle.LAST
+                LOOP
+                    IF (v_neueAutorenTabelle(n) = v_alteAutorenTabelle(a)) THEN
+                        v_helpContains := 1;
+                    END IF;
+                END LOOP;
+                -- Wenn Autor beim Update entfernt wurde
+                IF (v_helpContains = 0) THEN
+                    -- Speichert die AutorID vom Autor der vom Artikel entfernt wurde in v_AutorID
+                    SELECT AutorID
+                    INTO v_AutorID
+                    FROM Autor
+                    WHERE (v_alteAutorenTabelle(a) = Autor.Name)
+                    ;
+                    
+                    -- Löscht die Assoziation zwischen dem Autor und dem Artikel
+                    DELETE FROM AutorArtikelAssoziation
+                    WHERE (
+                        AutorArtikelAssoziation.ArtikelID = v_ArtikelID
+                        AND AutorArtikelAssoziation.AutorID = v_AutorID
+                    );
+                END IF;
+            END LOOP;
+            
+            
+            -- Assoziation zwischen Autor und Artikel hinzufügen, wenn Autor dem Artikel hinzugefügt wurde und Autor ggf. anlegen
+            FOR n IN v_neueAutorenTabelle.FIRST .. v_neueAutorenTabelle.LAST
+            LOOP
+                -- Prüfen ob Autor bei OLD schon existierte
+                v_helpContains := 0;
+                FOR a IN v_alteAutorenTabelle.FIRST .. v_alteAutorenTabelle.LAST
+                LOOP
+                    IF (v_neueAutorenTabelle(n) = v_alteAutorenTabelle(a)) THEN
+                        v_helpContains := 1;
+                    END IF;
+                END LOOP;
+                -- Wenn Autor beim Update hinzugefügt wurde
+                IF (v_helpContains = 0) THEN
+                    -- Existiert Autor in Datenbank?
+                    SELECT COUNT(*)
+                    INTO v_helpCounter
+                    FROM Autor
+                    WHERE Autor.Name = v_neueAutorenTabelle(n)
+                    ;
+                    
+                    -- Autor hinzufügen wenn er nicht existiert und ID in v_AutorID speichern
+                    IF (v_helpCounter = 0) THEN
+                        INSERT INTO Autor
+                        (Name)
+                        VALUES (v_neueAutorenTabelle(n))
+                        RETURNING AutorID INTO v_AutorID
+                        ;
+                    -- Autor existiert und ID in v_VerlagID speichern
+                    ELSE
+                        SELECT Autor.AutorID
+                        INTO v_AutorID
+                        FROM Autor
+                        WHERE Autor.Name = v_neueAutorenTabelle(n)
+                        ;
+                    END IF;
+                    
+                    -- Assoziation zwischen Autor und Artikel hinzufügen
+                    INSERT INTO AutorArtikelAssoziation
+                    (ArtikelID, AutorID)
+                    VALUES (v_ArtikelID, v_AutorID)
+                    ;
+                END IF;
+            END LOOP;
+        END IF;
+    
+    
+    
+    
+    -- Löschen der Daten ist aktuell nicht vorgesehen
+    ELSIF DELETING THEN
+        raise_application_error(-20001, 'Deleting entries from BuchInformationen is not allowed!');
+        /*
+        -- Löscht den Eintrag aus der Tabelle Buch
+        DELETE FROM Buch
+        WHERE Buch.ArtikelID = :OLD.ArtikelID
         ;
-    ELSE
-        SELECT Autor.autorID
-        INTO v_autorID
-        FROM Autor
-        WHERE Autor.Name = :NEW.Autor
+        
+        -- Löscht die Assoziation zum Autor
+        DELETE FROM AutorArtikelAssoziation
+        WHERE AutorArtikelAssoziation.ArtikelID = :OLD.ArtikelID
         ;
+        
+        -- Löscht den Eintrag aus der Tabelle Artikel
+        DELETE FROM Artikel
+        WHERE Artikel.artikelID = :OLD.ArtikelID
+        ;
+        */
     END IF;
-    
-    
-    -- Fügt falls nicht vorhanden den Verlag hinzu und speichert die neue oder schon existierende verlagID in der Variable v_verlagID
-    SELECT COUNT(*)
-    INTO v_helpCounter
-    FROM Verlag
-    WHERE Verlag.Name = :NEW.Verlag
-    ;
-    
-    IF (v_helpCounter = 0) THEN
-        INSERT INTO Verlag
-        (Name)
-        VALUES (:NEW.Verlag)
-        RETURNING verlagID INTO v_verlagId;
-    ELSE
-        SELECT Verlag.verlagID
-        INTO v_verlagId
-        FROM Verlag
-        WHERE Verlag.Name = :NEW.Verlag
-        ;
-    END IF;
-    
-    
-    -- Fügt die Daten in die Tabelle Artikel ein und speichert die artikelID in der Variable v_artikelID
-    INSERT INTO Artikel
-    (Titel, Preis, Steuersatz, Beschreibung, ISBN, Erscheinungsdatum, Sprache, AnzahlVerfuegbar, MindestBestand, AnzahlVerkauft, VerlagID)
-    VALUES (:NEW.Titel, :NEW.Preis, :NEW.Steuersatz, :NEW.Beschreibung, :NEW.ISBN, :NEW.Erscheinungsdatum, :NEW.Sprache, :NEW.AnzahlVerfuegbar, :NEW.MindestBestand, :NEW.AnzahlVerkauft, v_verlagID)
-    RETURNING artikelID INTO v_artikelID
-    ;
-    
-    
-    -- Fügt die Assoziation der Tabelle AutorArtikelAssoziation hinzu
-    INSERT INTO AutorArtikelAssoziation
-    (AutorID, ArtikelID)
-    VALUES (v_autorID, v_artikelID)
-    ;
-    
-    
-    -- Fügt die restlichen Daten der Tabelle Buch hinzu
-    INSERT INTO Buch
-    (ArtikelID, AnzahlSeiten)
-    VALUES (v_artikelID, :New.AnzahlSeiten)
-    ;
 END;
