@@ -1,14 +1,13 @@
-CREATE OR REPLACE TRIGGER BuchInformationenInsteadOfUpdate
+CREATE OR REPLACE TRIGGER Buch_Informationen_Instead_Of_Update
     INSTEAD OF UPDATE ON BuchInformationen
     FOR EACH ROW
 DECLARE
+    v_helpCounter NUMBER;
+    v_helpContains NUMBER;
+    
     v_artikelID NUMBER;
     V_autorId NUMBER;
     v_verlagId NUMBER;
-    
-    v_helpCounter NUMBER;
-    
-    v_helpContains NUMBER;
     
     type t_MyVarcharTable is table of (Autor.Name%TYPE);
     v_neueAutorenTabelle t_MyVarcharTable;
