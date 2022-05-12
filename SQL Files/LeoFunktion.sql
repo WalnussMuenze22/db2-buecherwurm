@@ -16,7 +16,7 @@ DECLARE
 Begin
     open accounts_cursor;
     Loop
-    fetch accounts_cursor into account_name, account_email;
+        FETCH accounts_cursor into account_name, account_email;
         EXIT when accounts_cursor%notfound;
         l_mail_conn := UTL_SMTP.open_connection('web13.alfahosting-server.de', 25);
         UTL_SMTP.helo(l_mail_conn, 'web13.alfahosting-server.de');
@@ -24,7 +24,6 @@ Begin
         UTL_SMTP.rcpt(l_mail_conn, account_email);
         UTL_SMTP.data(l_mail_conn, 'Dies ist ein Test.' || UTL_TCP.crlf || UTL_TCP.crlf);
         UTL_SMTP.quit(l_mail_conn);
-        fetch accounts_cursor into account_name, account_email;
     end loop;
     close accounts_cursor;
 end;
