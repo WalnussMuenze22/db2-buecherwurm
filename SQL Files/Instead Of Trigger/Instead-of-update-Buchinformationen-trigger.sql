@@ -1,4 +1,4 @@
-CREATE OR REPLACE TRIGGER Buch_Informationen_Instead_Of_Update
+CREATE OR REPLACE TRIGGER BuchInformationen_Instead_Of_Update
     INSTEAD OF UPDATE ON BuchInformationen
     FOR EACH ROW
 DECLARE
