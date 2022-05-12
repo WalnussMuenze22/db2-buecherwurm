@@ -1,15 +1,24 @@
 -- Oracle-Syntax
 --PLSQL procedure for sending emails to all acccounts where last Login is older than a half year
-CREATE or replace procedure send_emails
-DECLARE 
-    accounts_cursor CURSOR FOR SELECT * FROM Account WHERE last_login < sysdate - 0.5;
-    account_name account.name%type;
+CREATE or replace procedure send_emails AS
+DECLARE
+    CURSOR accounts_cursor is (
+        SELECT DISTINCT ACCOUNT.EMAIL, ADRESSE.NACHNAME
+        FROM Account
+        join KUNDE on ACCOUNT.ACCOUNTID = KUNDE.ACCOUNTID
+        JOIN ADRESSE on KUNDE.KUNDENID = ADRESSE.KUNDENID
+        WHERE LETZTERLOGIN < sysdate - 60*60*24*182
+        AND LETZTERLOGIN > sysdate - 60*60*24*183
+    );
+    account_name ADRESSE.NACHNAME%type;
     account_email account.email%type;
+    l_mail_conn UTL_SMTP.connection;
 Begin
     open accounts_cursor;
+    Loop
     fetch accounts_cursor into account_name, account_email;
-    while accounts_cursor%FOUND do
-        l_mail_conn := UTL_SMTP.open_connection('web13.alfahosting-server.de', '25');
+        EXIT when accounts_cursor%notfound;
+        l_mail_conn := UTL_SMTP.open_connection('web13.alfahosting-server.de', 25);
         UTL_SMTP.helo(l_mail_conn, 'web13.alfahosting-server.de');
         UTL_SMTP.mail(l_mail_conn, 'buecherwurm@leopebe.de');
         UTL_SMTP.rcpt(l_mail_conn, account_email);
@@ -18,7 +27,6 @@ Begin
         fetch accounts_cursor into account_name, account_email;
     end loop;
     close accounts_cursor;
-    del accounts_cursor;
 end;
 
 
