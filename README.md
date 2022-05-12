@@ -2,6 +2,38 @@
 
 Ein phänomenaler Bücherwurm der Generation X!
 
+
+
+# Team Meeting vom 12.05.2022
+
+TOCheck:
+-überprüfen, dass Artikel nicht doppelt in der Nachbestelltabelle landen
+-überprüfen, ob Serverextensions fehlen (Emailtrigger ->Leo)
+
+
+
+
+
+TODO:
+
+Sven: Dokumentation aktualisieren
+
+        -Caners Trigger -> statt "auf Mindestbestand" -> "über Mindestbestand"
+        -purgeAutor ersetzen durch folgenden Trigger:
+        ->Event: Table Account INSERT
+        ->Action: Gebe Meldung auf die Konsole aus, dass Kunde mit ID ... von DB Account ... erstellt wurde (   +Uhrzeit ?)
+
+        -Funktionen ersetzen: -> Sven (Dokumentation)
+
+                ->showCustomersOfPendingOrders -> (gibt alternativen Surrogate Key als BestellungsID zurück)
+                ->purgeInacteCustomer -> (Email an Kunden, dass er zu lange inaktiv war)
+                ->showStatistics -> (Meistverkaufte Buch)
+
+
+
+-Bestellposition -> Bestellbezeichnung einfügen; Bezeichnung aus Titel + ISBN zusammensetzen
+        WICHTIG : Daten werden kopiert und zusammengefügt; Keine Referenzen!
+
 #Team Meeting vom 24.04.2022
 
 Dokumentation und Präsentation wurden erstellt
