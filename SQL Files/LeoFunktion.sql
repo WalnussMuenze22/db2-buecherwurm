@@ -7,11 +7,11 @@ DECLARE
         FROM Account
         join KUNDE on ACCOUNT.ACCOUNTID = KUNDE.ACCOUNTID
         JOIN ADRESSE on KUNDE.KUNDENID = ADRESSE.KUNDENID
-        WHERE LETZTERLOGIN < sysdate - 60*60*24*182
-        AND LETZTERLOGIN > sysdate - 60*60*24*183
+        WHERE TO_DATE(LETZTERLOGIN) < TO_DATE(sysdate) - 182
+        AND TO_DATE(LETZTERLOGIN) > TO_DATE(sysdate) - 183
     );
     account_name ADRESSE.NACHNAME%type;
-    account_email account.email%type;
+    account_email ACCOUNT.EMAIL%type;
     l_mail_conn UTL_SMTP.connection;
 Begin
     open accounts_cursor;
