@@ -11,7 +11,7 @@ TOCheck:
 -überprüfen, ob Serverextensions fehlen (Emailtrigger ->Leo)
 
 
-
+nächstes (wenn 3/5 fertig sind) Freitag, 13.05.2022
 
 
 TODO:
