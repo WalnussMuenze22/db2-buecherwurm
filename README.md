@@ -21,14 +21,14 @@ Sven: Dokumentation aktualisieren
         -Caners Trigger -> statt "auf Mindestbestand" -> "über Mindestbestand"
         -purgeAutor ersetzen durch folgenden Trigger:
         ->Event: Table Account INSERT
-        ->Action: Gebe Meldung auf die Konsole aus, dass Kunde mit ID ... von DB Account ... erstellt wurde (   +Uhrzeit ?)
+        ->Action: Gebe Meldung auf die Konsole aus, dass Kunde mit ID ... von DB Account ... erstellt   wurde (   +Uhrzeit ?)
 
         -Funktionen ersetzen: -> Sven (Dokumentation)
 
                 ->showCustomersOfPendingOrders -> (gibt alternativen Surrogate Key als BestellungsID zurück)
                 ->purgeInacteCustomer -> (Email an Kunden, dass er zu lange inaktiv war)
                 ->showStatistics -> (Meistverkaufte Buch)
-
+        -Bestellungen haben 4 Modi ("wird erstellt", "offen", "versendet", "zugestellt")
 
 
 -Bestellposition -> Bestellbezeichnung einfügen; Bezeichnung aus Titel + ISBN zusammensetzen
