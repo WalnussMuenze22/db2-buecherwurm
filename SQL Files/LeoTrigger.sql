@@ -26,6 +26,9 @@ end;
 
 
 
+ToDo:
+set serveroutput on size 30000;
+
 -- Testfälle
 Insert into ACCount (EMail, PasswortHash, AccountTyp, LETZTERLOGIN,  Aktiv) values ('test@example.com', 'test', 'test', SYSDATE, 1);
 UPDATE ACCOUNT SET EMail = 'leopetersberg@gmail.com' WHERE AccountID = 1;
