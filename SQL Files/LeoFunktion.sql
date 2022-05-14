@@ -1,19 +1,11 @@
-create or replace procedure send_emails AS
+create procedure send_emails AS
     CURSOR accounts_cursor is (
-        -- E-Mail_Adresse und Name bei der letzten Bestellung, von Kunden, die seit zwichen 182 und 183 Tagen nicht eingelogt waren
-        SELECT ACCOUNT.EMAIL, Adresse.NACHNAME
+        -- E-Mail-Adresse von Kunden, die seit zwichen 182 und 183 Tagen nicht eingelogt waren
+        SELECT ACCOUNT.EMAIL
         FROM Account
-            join Kunde K using (AccountID)
-            join Bestellung using (KundenID)
-            join Adresse on BESTELLUNG.RECHNUNGSADRESSEID = ADRESSE.ADRESSEID
-        WHERE   TO_DATE(sysdate) - cast(LETZTERLOGIN as date) > 182
-            AND TO_DATE(sysdate) - cast(LETZTERLOGIN as date) <= 183
+        WHERE   TO_DATE(sysdate) - cast(LETZTERLOGIN as date) >= 182
+            AND TO_DATE(sysdate) - cast(LETZTERLOGIN as date) <  1000
             AND ACCOUNT.EMAIL IS NOT NULL
-            AND Bestellung.Datum =
-                --Datum der letzten Bestellung des jeweiligen Kunden
-                (SELECT MAX(Datum)
-                FROM Bestellung
-                WHERE Bestellung.KundenID = K.KundenID)
     );
     account_name ADRESSE.NACHNAME%type;
     account_email ACCOUNT.EMAIL%type;
@@ -21,8 +13,24 @@ create or replace procedure send_emails AS
 Begin
     open accounts_cursor;
     Loop
-        FETCH accounts_cursor into account_email, account_name;
+        FETCH accounts_cursor into account_email;
         EXIT when accounts_cursor%notfound;
+        -- Kundenname ermitteln, anhand der letzten Bestellung  des Kunden
+        SELECT Adresse.NACHNAME
+        into account_name
+        FROM Account
+            join Kunde using (AccountID)
+            join Bestellung using (KundenID)
+            join Adresse on BESTELLUNG.RECHNUNGSADRESSEID = ADRESSE.ADRESSEID
+        WHERE ACCOUNT.EMAIL = account_email
+            AND Bestellung.Datum =
+                --Datum der letzten Bestellung des Kunden
+                (SELECT MAX(Datum)
+                FROM Bestellung
+                    join KUNDE K on BESTELLUNG.KUNDENID = K.KUNDENID
+                    join ACCOUNT A2 on K.ACCOUNTID = A2.ACCOUNTID
+                WHERE A2.EMAIL = account_email);
+
 
         dbms_output.put_line('Sending mail to ' || account_email || ' (' || account_name || ')');
 

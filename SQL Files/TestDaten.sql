@@ -59,3 +59,116 @@ INSERT INTO BuchInformationen (
     'Marc-Uwe Kling#Bernd Kissel'
 );
 
+
+INSERT INTO Account (
+    EMail,
+    PasswortHash,
+    AccountTyp,
+    LetzterLogin,
+    Aktiv
+) VALUES (
+    'test@example.com',
+    '$2a$10$/w/x/y/z/A/B/C/D/E/F/G/H/I/J/K/L/M/N/O/P/Q/R/S/T/U/V/W/X/Y/Z',
+    'Kunde',
+    DATE '2022-01-01',
+    1
+);
+
+
+INSERT INTO Account (
+    EMail,
+    PasswortHash,
+    AccountTyp,
+    LetzterLogin,
+    Aktiv
+) VALUES (
+    'test2@example.com',
+    '$2admz/w/x/y/z/A/B/C/D/E/F/G/H/I/J/K/L/M/N/O/P/Q/R/S/T/U/V/W/X/Y/Z',
+    'Kunde',
+    DATE '2021-01-01',
+    1
+);
+
+INSERT INTO Kunde (
+    AccountID
+) VALUES (
+    1
+);
+
+INSERT INTO Kunde (
+    AccountID
+) VALUES (
+    2
+);
+
+
+INSERT INTO Adresse (
+    Vorname,
+    Nachname,
+    Strasse,
+    Hausnummer,
+    Postleitzahl,
+    Ort,
+    KundenID
+) VALUES (
+    'Stefanie',
+    'Rothschild',
+    'Grosse Praesidenten Str. ',
+    61,
+    67752,
+    'Oberweiler-Tiefenbach',
+    1
+);
+
+
+INSERT INTO Adresse (
+    Vorname,
+    Nachname,
+    Strasse,
+    Hausnummer,
+    Postleitzahl,
+    Ort,
+    KundenID
+) VALUES (
+    'Sebastian',
+    'Adler',
+    'Messedamm 42',
+    42,
+    01194,
+    'Dresden',
+    2
+);
+
+
+INSERT INTO Bestellung (
+    Datum,
+    Status,
+    RechnungsadresseID,
+    LieferadresseID,
+    KundenID,
+    Gesamtpreis
+) VALUES (
+    DATE '2022-01-01',
+    'offen',
+    1,
+    1,
+    1,
+    0
+);
+
+
+INSERT INTO Bestellung (
+    Datum,
+    Status,
+    RechnungsadresseID,
+    LieferadresseID,
+    KundenID,
+    Gesamtpreis
+) VALUES (
+    DATE '2021-01-01',
+    'offen',
+    2,
+    2,
+    2,
+    0
+);
