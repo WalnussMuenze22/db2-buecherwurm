@@ -1,3 +1,5 @@
+----Buch----
+
 INSERT INTO BuchInformationen (Titel,
                                Preis,
                                Steuersatz,
@@ -109,7 +111,7 @@ VALUES ('1984 : Neu übersetzt von Jan Strümpel',
         'Anaconda Verlag',
         'George Orwell');
 
-
+----Account-----
 
 INSERT INTO Account (EMail,
                      PasswortHash,
@@ -121,7 +123,6 @@ VALUES ('test@example.com',
         'Kunde',
         DATE '2022-01-01',
         1);
-
 
 INSERT INTO Account (EMail,
                      PasswortHash,
@@ -145,6 +146,7 @@ VALUES ('sven.heiter@smail.th-koeln.de',
         TIMESTAMP '2022-05-14 16:12:44',
         1);
 
+----Kunde----
 
 INSERT INTO Kunde (AccountID)
 VALUES (1);
@@ -152,6 +154,10 @@ VALUES (1);
 INSERT INTO Kunde (AccountID)
 VALUES (2);
 
+INSERT INTO KUNDE(ACCOUNTID)
+VALUES (2);
+
+----Adresse-----
 
 INSERT INTO Adresse (Vorname,
                      Nachname,
@@ -230,9 +236,7 @@ VALUES (DATE '2021-01-01',
         0);
 
 
-----Kunde----
-INSERT INTO KUNDE(ACCOUNTID)
-VALUES (2);
+----Bestellposition----
 
 
 
