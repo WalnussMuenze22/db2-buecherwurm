@@ -305,7 +305,7 @@ INSERT INTO Bestellposition (
  * 1 mal Känguru Chroniken; MwSt7; Stückpreis 10.99€
  * 5 mal LTB - Donald gibt nicht auf; MwSt7; Stückpreis 6€
  * 3 mal George Orwell 1984; MwSt7; Stückpreis 6.95€
- * Gesamtpreis: 43.84€
+ * Gesamtpreis: 61.84€
  */
 
 INSERT INTO Bestellung (
