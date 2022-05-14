@@ -371,6 +371,41 @@ INSERT INTO Bestellposition (
 
 
 
+/* Bestellung 3
+ * 1 mal LTB - Donald gibt nicht auf; MwSt7; Stückpreis 6€
+ * Gesamtpreis: ?
+ */
+
+INSERT INTO Bestellung (
+        Datum,
+        Status,
+        RechnungsadresseID,
+        LieferadresseID,
+        KundenID
+) VALUES (
+        DATE '2022-03-02',
+        'editierbar',
+        3,
+        3,
+        3
+);
+
+
+INSERT INTO Bestellposition (
+        ArtikelID,
+        BestellungID,
+        Stueckpreis,
+        Steuersatz,
+        Menge
+) VALUES (
+        3,
+        3,
+        6.00,
+        7,
+        1
+);
+
+
 COMMIT;
 
 --TODO : Welche Accounttypen gibt es???
