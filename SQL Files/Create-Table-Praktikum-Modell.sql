@@ -74,7 +74,7 @@ CREATE TABLE Artikel (
     Preis NUMBER,
     Steuersatz NUMBER,
     VerlagID NUMBER,
-    Beschreibung VARCHAR(255),
+    Beschreibung VARCHAR(2047),
     ISBN NUMBER,
     AnzahlVerkauft NUMBER,
     Erscheinungsdatum DATE,
