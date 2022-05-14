@@ -1,11 +1,11 @@
-Editierbar:
+editierbar:
 
 - Bestellung wird gerade erstellt
 - Bestellpositionen können noch hinzugefügt, verändert und entfernt werden
 
 
 
-Offen:
+offen:
 
 - Bestellung wurde Aufgegeben
 - Bestellung kann nicht mehr verändert werden
@@ -13,12 +13,12 @@ Offen:
 
 
 
-Versendet:
+versendet:
 
 - Bestellung wurde an Zusteller übergeben
 
 
 
-Zugestellt:
+zugestellt:
 
 - Kunde hat Paket erhalten

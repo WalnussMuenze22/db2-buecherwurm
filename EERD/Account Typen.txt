@@ -1,9 +1,9 @@
-Kunde:
+kunde:
 
 Normaler Kunde
 
 
 
-Mitarbeiter:
+mitarbeiter:
 
 Normaler Mitarbeiter
