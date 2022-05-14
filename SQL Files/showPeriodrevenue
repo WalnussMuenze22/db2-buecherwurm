@@ -1,0 +1,12 @@
+CREATE OR REPLACE  PROCEDURE showPeriodRevenue(start IN DATE, end IN DATE, result OUT Double)
+IS
+
+        BEGIN
+            for zeile IN (
+                SELECT  GESAMTPREIS FROM BESTELLUNG WHERE (Datum >= start AND Datum <= end)
+                )
+            LOOP
+                result = result + zeile.GESAMTPREIS;
+                end loop;
+            return result;
+        end;
