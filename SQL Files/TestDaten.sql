@@ -1,19 +1,21 @@
-----Buch----
+-- Bücher --
 
-INSERT INTO BuchInformationen (Titel,
-                               Preis,
-                               Steuersatz,
-                               Beschreibung,
-                               ISBN,
-                               ErscheinungsDatum,
-                               Sprache,
-                               AnzahlVerfuegbar,
-                               Mindestbestand,
-                               AnzahlVerkauft,
-                               AnzahlSeiten,
-                               Verlag,
-                               AutorenListe)
-VALUES ('Die Känguru-Chroniken',
+INSERT INTO BuchInformationen (
+        Titel,
+        Preis,
+        Steuersatz,
+        Beschreibung,
+        ISBN,
+        ErscheinungsDatum,
+        Sprache,
+        AnzahlVerfuegbar,
+        Mindestbestand,
+        AnzahlVerkauft,
+        AnzahlSeiten,
+        Verlag,
+        AutorenListe
+) VALUES (
+        'Die Känguru-Chroniken',
         10.99,
         7,
         'Frisch Frech und völlig Absurd',
@@ -25,22 +27,26 @@ VALUES ('Die Känguru-Chroniken',
         0,
         272,
         'Ullstein',
-        'Marc-Uwe Kling');
+        'Marc-Uwe Kling'
+);
 
-INSERT INTO BuchInformationen (Titel,
-                               Preis,
-                               Steuersatz,
-                               Beschreibung,
-                               ISBN,
-                               ErscheinungsDatum,
-                               Sprache,
-                               AnzahlVerfuegbar,
-                               Mindestbestand,
-                               AnzahlVerkauft,
-                               AnzahlSeiten,
-                               Verlag,
-                               AutorenListe)
-VALUES ('Die Känguru-Comics 1: Also ICH könnte das besser',
+
+INSERT INTO BuchInformationen (
+        Titel,
+        Preis,
+        Steuersatz,
+        Beschreibung,
+        ISBN,
+        ErscheinungsDatum,
+        Sprache,
+        AnzahlVerfuegbar,
+        Mindestbestand,
+        AnzahlVerkauft,
+        AnzahlSeiten,
+        Verlag,
+        AutorenListe
+) VALUES (
+        'Die Känguru-Comics 1: Also ICH könnte das besser',
         22.00,
         7,
         'Das Känguru und Marc-Uwe kommentieren den alltäglichen Wahnsinn auf ZEIT online – und zwar als Comicfiguren!',
@@ -52,22 +58,26 @@ VALUES ('Die Känguru-Comics 1: Also ICH könnte das besser',
         0,
         224,
         'Carlsen',
-        'Marc-Uwe Kling#Bernd Kissel');
+        'Marc-Uwe Kling#Bernd Kissel'
+);
 
-INSERT INTO BuchInformationen (Titel,
-                               Preis,
-                               Steuersatz,
-                               Beschreibung,
-                               ISBN,
-                               ErscheinungsDatum,
-                               Sprache,
-                               AnzahlVerfuegbar,
-                               Mindestbestand,
-                               AnzahlVerkauft,
-                               AnzahlSeiten,
-                               Verlag,
-                               AutorenListe)
-VALUES ('Lustiges Taschenbuch - Donald gibt nicht auf',
+
+INSERT INTO BuchInformationen (
+        Titel,
+        Preis,
+        Steuersatz,
+        Beschreibung,
+        ISBN,
+        ErscheinungsDatum,
+        Sprache,
+        AnzahlVerfuegbar,
+        Mindestbestand,
+        AnzahlVerkauft,
+        AnzahlSeiten,
+        Verlag,
+        AutorenListe
+) VALUES (
+        'Lustiges Taschenbuch - Donald gibt nicht auf',
         6.00,
         7,
         'Vorgeschichte, Onkel Donald und die Unglücksschule, Donald und der "Fliegende Schotte", Donald und das Filmfestival, Onkel Dagobert un der zauberspiegel',
@@ -79,22 +89,26 @@ VALUES ('Lustiges Taschenbuch - Donald gibt nicht auf',
         1,
         250,
         'Egmont Ehapa Media GmbH',
-        'Gian Giacomo Dalmasso#Guido Martina#Romano Scarpa');
+        'Gian Giacomo Dalmasso#Guido Martina#Romano Scarpa'
+);
 
-INSERT INTO BuchInformationen (Titel,
-                               Preis,
-                               Steuersatz,
-                               Beschreibung,
-                               ISBN,
-                               ErscheinungsDatum,
-                               Sprache,
-                               AnzahlVerfuegbar,
-                               Mindestbestand,
-                               AnzahlVerkauft,
-                               AnzahlSeiten,
-                               Verlag,
-                               AutorenListe)
-VALUES ('1984 : Neu übersetzt von Jan Strümpel',
+
+INSERT INTO BuchInformationen (
+        Titel,
+        Preis,
+        Steuersatz,
+        Beschreibung,
+        ISBN,
+        ErscheinungsDatum,
+        Sprache,
+        AnzahlVerfuegbar,
+        Mindestbestand,
+        AnzahlVerkauft,
+        AnzahlSeiten,
+        Verlag,
+        AutorenListe
+) VALUES (
+        '1984 : Neu übersetzt von Jan Strümpel',
         6.95,
         7,
         'London, 1984: Winston Smith, Geschichtsfälscher im Staatsdienst, verliebt sich in die schöne und geheimnisvolle Julia.' ||
@@ -109,134 +123,251 @@ VALUES ('1984 : Neu übersetzt von Jan Strümpel',
         30,
         400,
         'Anaconda Verlag',
-        'George Orwell');
+        'George Orwell'
+);
 
-----Account-----
 
-INSERT INTO Account (EMail,
-                     PasswortHash,
-                     AccountTyp,
-                     LetzterLogin,
-                     Aktiv)
-VALUES ('test@example.com',
+
+
+-- Accounts --
+
+INSERT INTO Account (
+        Email,
+        PasswortHash,
+        AccountTyp,
+        LetzterLogin,
+        Aktiv
+) VALUES (
+        'test@example.com',
         '$2a$10$/w/x/y/z/A/B/C/D/E/F/G/H/I/J/K/L/M/N/O/P/Q/R/S/T/U/V/W/X/Y/Z',
         'Kunde',
         DATE '2022-01-01',
-        1);
+        1
+);
 
-INSERT INTO Account (EMail,
-                     PasswortHash,
-                     AccountTyp,
-                     LetzterLogin,
-                     Aktiv)
-VALUES ('test2@example.com',
+
+INSERT INTO Account (
+        Email,
+        PasswortHash,
+        AccountTyp,
+        LetzterLogin,
+        Aktiv
+) VALUES (
+        'test2@example.com',
         '$2admz/w/x/y/z/A/B/C/D/E/F/G/H/I/J/K/L/M/N/O/P/Q/R/S/T/U/V/W/X/Y/Z',
         'Kunde',
         DATE '2021-01-01',
-        1);
+        1
+);
 
-INSERT INTO ACCOUNT(EMail,
-                    Passworthash,
-                    AccountTyp,
-                    LetzterLogin,
-                    Aktiv)
-VALUES ('sven.heiter@smail.th-koeln.de',
-        '$2admz/w/x/y/z/A/B/C/D/E/F/G/H/I/J/K/L/M/N/O/P/Q/R/S/T/U/V/W/X/Y/Z',
+INSERT INTO Account (
+        Email,
+        PasswortHash,
+        AccountTyp,
+        LetzterLogin,
+        Aktiv
+) VALUES (
+        'sven.heiter@smail.th-koeln.de',
+        '$2aqrs/w/x/y/z/A/B/C/D/E/F/G/H/I/J/K/L/M/N/O/P/Q/R/S/T/U/V/W/X/Y/Z',
         'Kunde',
-        TIMESTAMP '2022-05-14 16:12:44',
-        1);
+        DATE '2020-01-01',
+        1
+);
 
-----Kunde----
 
-INSERT INTO Kunde (AccountID)
-VALUES (1);
 
-INSERT INTO Kunde (AccountID)
-VALUES (2);
 
-INSERT INTO KUNDE(ACCOUNTID)
-VALUES (2);
+-- Kunden --
 
-----Adresse-----
+INSERT INTO Kunde (AccountID) VALUES (1);
 
-INSERT INTO Adresse (Vorname,
-                     Nachname,
-                     Strasse,
-                     Hausnummer,
-                     Postleitzahl,
-                     Ort,
-                     KundenID)
-VALUES ('Stefanie',
+INSERT INTO Kunde (AccountID) VALUES (2);
+
+INSERT INTO Kunde (AccountID) VALUES (3);
+
+
+
+
+-- Adressen --
+
+INSERT INTO Adresse (
+        Vorname,
+        Nachname,
+        Strasse,
+        Hausnummer,
+        Postleitzahl,
+        Ort,
+        KundenID
+) VALUES (
+        'Stefanie',
         'Rothschild',
         'Grosse Praesidenten Str. ',
         61,
         67752,
         'Oberweiler-Tiefenbach',
-        1);
+        1
+);
 
 
-INSERT INTO Adresse (Vorname,
-                     Nachname,
-                     Strasse,
-                     Hausnummer,
-                     Postleitzahl,
-                     Ort,
-                     KundenID)
-VALUES ('Sebastian',
+INSERT INTO Adresse (
+        Vorname,
+        Nachname,
+        Strasse,
+        Hausnummer,
+        Postleitzahl,
+        Ort,
+        KundenID
+) VALUES (
+        'Sebastian',
         'Adler',
         'Messedamm 42',
         42,
         01194,
         'Dresden',
-        2);
+        2
+);
 
-INSERT INTO ADRESSE(
-                    Vorname,
-                    Nachname,
-                    Strasse,
-                    Hausnummer,
-                    Postleitzahl,
-                    Ort,
-                    KundenID)
-VALUES (
+
+INSERT INTO ADRESSE (
+        Vorname,
+        Nachname,
+        Strasse,
+        Hausnummer,
+        Postleitzahl,
+        Ort,
+        KundenID
+) VALUES (
         'Sven',
         'Heiter',
         'Entenhausenerstraße',
         '4',
         '51645',
         'Gummersbach',
-        2);
+        3
+);
 
 
-INSERT INTO Bestellung (Datum,
-                        Status,
-                        RechnungsadresseID,
-                        LieferadresseID,
-                        KundenID,
-                        Gesamtpreis)
-VALUES (DATE '2022-01-01',
+
+
+-- Bestellungen mit Bestellposition --
+
+/* Bestellung 1
+ * 1 mal Känguru Comics; MwSt7; Stückpreis 22€
+ * 2 mal LTB - Donald gibt nicht auf; MwSt7; Stückpreis 6€
+ * Gesamtpreis: 34€
+ */
+INSERT INTO Bestellung (
+        Datum,
+        Status,
+        RechnungsadresseID,
+        LieferadresseID,
+        KundenID,
+        Gesamtpreis
+) VALUES (
+        DATE '2022-03-01',
         'offen',
+        3,
+        3,
+        3,
+        34.00
+);
+
+INSERT INTO Bestellposition (
+        ArtikelID,
+        BestellungID,
+        Stueckpreis,
+        Steuersatz,
+        Menge
+) VALUES (
+        2,
         1,
+        22.00,
+        7,
+        1
+);
+
+INSERT INTO Bestellposition (
+        ArtikelID,
+        BestellungID,
+        Stueckpreis,
+        Steuersatz,
+        Menge
+) VALUES (
+        3,
         1,
-        1,
-        0);
+        6.00,
+        7,
+        2
+);
 
 
-INSERT INTO Bestellung (Datum,
-                        Status,
-                        RechnungsadresseID,
-                        LieferadresseID,
-                        KundenID,
-                        Gesamtpreis)
-VALUES (DATE '2021-01-01',
+/* Bestellung 2
+ * 1 mal Känguru Chroniken; MwSt7; Stückpreis 10.99€
+ * 5 mal LTB - Donald gibt nicht auf; MwSt7; Stückpreis 6€
+ * 3 mal George Orwell 1984; MwSt7; Stückpreis 6.95€
+ * Gesamtpreis: 43.84€
+ */
+
+INSERT INTO Bestellung (
+        Datum,
+        Status,
+        RechnungsadresseID,
+        LieferadresseID,
+        KundenID,
+        Gesamtpreis
+) VALUES (
+        DATE '2022-03-02',
         'offen',
-        2,
-        2,
-        2,
-        0);
+        3,
+        3,
+        3,
+        61.84
+);
 
 
-----Bestellposition----
+INSERT INTO Bestellposition (
+        ArtikelID,
+        BestellungID,
+        Stueckpreis,
+        Steuersatz,
+        Menge
+) VALUES (
+        1,
+        2,
+        10.99,
+        7,
+        1
+);
+
+
+INSERT INTO Bestellposition (
+        ArtikelID,
+        BestellungID,
+        Stueckpreis,
+        Steuersatz,
+        Menge
+) VALUES (
+        3,
+        2,
+        6.00,
+        7,
+        5
+);
+
+
+INSERT INTO Bestellposition (
+        ArtikelID,
+        BestellungID,
+        Stueckpreis,
+        Steuersatz,
+        Menge
+) VALUES (
+        4,
+        2,
+        6.95,
+        7,
+        3
+);
 
 
 
