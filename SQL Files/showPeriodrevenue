@@ -1,12 +1,12 @@
-CREATE OR REPLACE  PROCEDURE showPeriodRevenue(start IN DATE, end IN DATE, result OUT Double)
+CREATE OR REPLACE  FUNCTION showPeriodRevenue(startDatum IN DATE, endDatum IN DATE, umsatz OUT Double)
 IS
 
         BEGIN
             for zeile IN (
-                SELECT  GESAMTPREIS FROM BESTELLUNG WHERE (Datum >= start AND Datum <= end)
+                SELECT  GESAMTPREIS FROM BESTELLUNG WHERE (Datum >= startDatum AND Datum <= endDatum)
                 )
             LOOP
-                result = result + zeile.GESAMTPREIS;
+                umsatz = umsatz + zeile.GESAMTPREIS;
                 end loop;
-            return result;
+            return umsatz;
         end;
