@@ -280,7 +280,7 @@ INSERT INTO Bestellposition (
         Menge
 ) VALUES (
         2,
-        1,
+        (SYSDATE || ' - ' || 1),
         22.00,
         7,
         1
@@ -294,7 +294,7 @@ INSERT INTO Bestellposition (
         Menge
 ) VALUES (
         3,
-        1,
+        (SYSDATE || ' - ' || 1),
         6.00,
         7,
         2
@@ -333,7 +333,7 @@ INSERT INTO Bestellposition (
         Menge
 ) VALUES (
         1,
-        2,
+        (SYSDATE || ' - ' || 2),
         10.99,
         7,
         1
@@ -348,7 +348,7 @@ INSERT INTO Bestellposition (
         Menge
 ) VALUES (
         3,
-        2,
+        (SYSDATE || ' - ' || 2),
         6.00,
         7,
         5
@@ -363,7 +363,7 @@ INSERT INTO Bestellposition (
         Menge
 ) VALUES (
         4,
-        2,
+        (SYSDATE || ' - ' || 2),
         6.95,
         7,
         3
@@ -399,7 +399,7 @@ INSERT INTO Bestellposition (
         Menge
 ) VALUES (
         3,
-        3,
+        (SYSDATE || ' - ' || 3),
         6.00,
         7,
         1
@@ -407,6 +407,3 @@ INSERT INTO Bestellposition (
 
 
 COMMIT;
-
---TODO : Welche Accounttypen gibt es???
---TODO : Status von Bestellungen festlegen
