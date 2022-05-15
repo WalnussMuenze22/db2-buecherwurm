@@ -135,6 +135,7 @@ INSERT INTO BuchInformationen (
 
 -- Accounts --
 
+--AccountID = 1
 INSERT INTO Account (
         Email,
         PasswortHash,
@@ -149,7 +150,7 @@ INSERT INTO Account (
         1
 );
 
-
+--AccountID = 2
 INSERT INTO Account (
         Email,
         PasswortHash,
@@ -164,6 +165,7 @@ INSERT INTO Account (
         1
 );
 
+--AccountID = 3
 INSERT INTO Account (
         Email,
         PasswortHash,
@@ -183,10 +185,13 @@ INSERT INTO Account (
 
 -- Kunden --
 
+--KundenID = 1
 INSERT INTO Kunde (AccountID) VALUES (1);
 
+--KundenID = 2
 INSERT INTO Kunde (AccountID) VALUES (2);
 
+--KundenID = 3
 INSERT INTO Kunde (AccountID) VALUES (3);
 
 
@@ -194,6 +199,8 @@ INSERT INTO Kunde (AccountID) VALUES (3);
 
 -- Adressen --
 
+
+-- AdresseID = 1
 INSERT INTO Adresse (
         Vorname,
         Nachname,
@@ -212,7 +219,7 @@ INSERT INTO Adresse (
         1
 );
 
-
+-- AdresseID = 2
 INSERT INTO Adresse (
         Vorname,
         Nachname,
@@ -231,7 +238,7 @@ INSERT INTO Adresse (
         2
 );
 
-
+-- AdresseID = 3
 INSERT INTO ADRESSE (
         Vorname,
         Nachname,
