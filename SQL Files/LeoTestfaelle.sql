@@ -1,6 +1,8 @@
 
 -- Testfälle Funktion send_emails(): 
 
+
+-- Testfall E-Mail senden
 INSERT INTO Account (
         Email,
         PasswortHash,
@@ -8,13 +10,28 @@ INSERT INTO Account (
         LetzterLogin,
         Aktiv
 ) VALUES (
-        'test@example.com',
+        'testsendEmail@example.com',
         '$2a$10$/w/x/y/z/A/B/C/D/E/F/G/H/I/J/K/L/M/N/O/P/Q/R/S/T/U/V/W/X/Y/Z',
         'Kunde',
         sysdate  - 182,
         1
 );
 
+
+-- Testfall E-Mail wird nicht gesendet
+INSERT INTO Account (
+        Email,
+        PasswortHash,
+        AccountTyp,
+        LetzterLogin,
+        Aktiv
+) VALUES (
+        'testDontSendEmail@example.com',
+        '$2a$10$/w/x/y/z/A/B/C/D/E/F/G/H/I/J/K/L/M/N/O/P/Q/R/S/T/U/V/W/X/Y/Z',
+        'Kunde',
+        sysdate,
+        1
+);
 
 BEGIN
     send_emails();
