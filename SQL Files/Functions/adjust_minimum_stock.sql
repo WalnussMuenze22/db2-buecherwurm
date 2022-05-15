@@ -21,7 +21,7 @@ BEGIN
         v_ArtikelID := ArtikelRow.ArtikelID;
         
         SELECT
-        SUM(Bestellposition.Menge) AS stueckVerkauft
+        NVL(SUM(Bestellposition.Menge), 0) AS stueckVerkauft
         INTO v_stueckVerkauftLetzterMonat
         FROM Bestellposition
         JOIN Bestellung ON Bestellposition.BestellungID = Bestellung.BestellungID
