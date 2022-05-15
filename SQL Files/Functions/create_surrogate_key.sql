@@ -36,36 +36,4 @@ END;
 
 
 
---Testfall 1
---BestellungID = 4
---Erwartetes BestellungID = 'sysdate - 1'
-INSERT INTO Bestellung (
-        Datum,
-        Status,
-        RechnungsadresseID,
-        LieferadresseID,
-        KundenID
-) VALUES (
-        Sysdate,
-        'editierbar',
-        3,
-        3,
-        3
-);
 
---Testfall 2
---BestellungID = 5
---Erwartetes BestellungID = 'sysdate - 1'
-INSERT INTO Bestellung (
-        Datum,
-        Status,
-        RechnungsadresseID,
-        LieferadresseID,
-        KundenID
-) VALUES (
-        Sysdate,
-        'editierbar',
-        2,
-        2,
-        2
-);
