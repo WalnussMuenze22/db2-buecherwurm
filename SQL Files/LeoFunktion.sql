@@ -59,3 +59,9 @@ Begin
 end;
 /
 
+
+
+-- Testfälle: 
+BEGIN
+    send_emails();
+END;

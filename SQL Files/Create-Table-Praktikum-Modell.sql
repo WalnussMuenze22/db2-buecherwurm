@@ -27,8 +27,8 @@ CREATE TABLE Kunde (
 -- Tabelle Account
 CREATE TABLE Account (
     AccountID NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    EMail VARCHAR(255),
-    PasswortHash VARCHAR(255),
+    EMail VARCHAR(255) NOT NULL UNIQUE,
+    PasswortHash VARCHAR(255) NOT NULL,
     AccountTyp VARCHAR(30),
     LetzterLogin TIMESTAMP,
     Aktiv NUMBER
@@ -39,9 +39,9 @@ CREATE TABLE Bestellung (
     BestellungID NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     Datum TIMESTAMP,
     Status VARCHAR(30),
-    RechnungsadresseID NUMBER,
-    LieferadresseID NUMBER,
-    KundenID NUMBER,
+    RechnungsadresseID NUMBER NOT NULL,
+    LieferadresseID NUMBER Not NULL
+    KundenID NUMBER NOT NULL,
     Gesamtpreis NUMBER
 );
 
@@ -54,14 +54,14 @@ CREATE TABLE Adresse (
     Hausnummer NUMBER,
     Postleitzahl NUMBER,
     Ort VARCHAR(255),
-    KundenID NUMBER 
+    KundenID NUMBER NOT NULL 
 );
 
 -- Tabelle Bestellpostion
 CREATE TABLE Bestellposition (
     BestellpositionID NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    ArtikelID NUMBER,
-    BestellungID NUMBER,
+    ArtikelID NUMBER NOT NULL,
+    BestellungID NUMBER NOT NULL,
     Stueckpreis NUMBER,
     Steuersatz NUMBER,
     Menge NUMBER
@@ -73,7 +73,7 @@ CREATE TABLE Artikel (
     Titel VARCHAR(255),
     Preis NUMBER,
     Steuersatz NUMBER,
-    VerlagID NUMBER,
+    VerlagID NUMBER NOT NULL,
     Beschreibung VARCHAR(2047),
     ISBN NUMBER,
     AnzahlVerkauft NUMBER,
@@ -144,7 +144,7 @@ CREATE TABLE StatMonatsumsatz (
 -- Tabelle StatTopArtikel
 CREATE TABLE StatTopArtikel (
     MonatsID NUMBER PRIMARY KEY,
-    ArtikelID NUMBER
+    ArtikelID NUMBER NOT NULL,
 );
 
 
