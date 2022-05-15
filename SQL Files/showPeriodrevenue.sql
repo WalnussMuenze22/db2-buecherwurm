@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION showPeriodRevenue(startDatum DATE, endDatum DATE) return Number
+CREATE OR REPLACE FUNCTION show_period_revenue(startDatum DATE, endDatum DATE) return Number
     IS
     umsatz Number := 0;
 BEGIN
