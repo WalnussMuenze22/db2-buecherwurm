@@ -53,5 +53,5 @@ v_username VARCHAR(255);
 BEGIN
 SELECT user INTO v_username
 FROM dual;
-INSERT INTO kunde_archive(KundeID,AccountID) VALUES (:old.KundeID,:old.AccountID);
+INSERT INTO kunde_archive(KundenID,AccountID) VALUES (:old.KundenID,:old.AccountID);
 END;
