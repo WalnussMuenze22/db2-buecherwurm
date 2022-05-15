@@ -1,5 +1,6 @@
 -- Bücher --
 
+--ArtikelID 1
 INSERT INTO BuchInformationen (
         Titel,
         Preis,
@@ -31,6 +32,7 @@ INSERT INTO BuchInformationen (
 );
 
 
+--ArtikelID 2
 INSERT INTO BuchInformationen (
         Titel,
         Preis,
@@ -62,6 +64,7 @@ INSERT INTO BuchInformationen (
 );
 
 
+--ArtikelID 3
 INSERT INTO BuchInformationen (
         Titel,
         Preis,
@@ -93,6 +96,7 @@ INSERT INTO BuchInformationen (
 );
 
 
+--ArtikelID 4
 INSERT INTO BuchInformationen (
         Titel,
         Preis,
@@ -403,6 +407,21 @@ INSERT INTO Bestellposition (
         6.00,
         7,
         1
+);
+
+
+
+-- Nachbestellungen --
+
+--Die Känguru-Comics 1
+INSERT INTO Nachbestellungen (
+        ArtikelID,
+        Anzahl,
+        Bestellstatus
+) VALUES (
+        2,
+        20,
+        'offen'
 );
 
 
