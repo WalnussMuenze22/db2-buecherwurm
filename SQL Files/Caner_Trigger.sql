@@ -1,6 +1,6 @@
 
 -- Trigger
-CREATE OR REPLACE TRIGGER addToStockOrder
+CREATE OR REPLACE TRIGGER add_to_stock_order
 AFTER UPDATE OF AnzahlVerfuegbar ON Artikel
 FOR EACH ROW
 WHEN (NEW.AnzahlVerfuegbar < OLD.Mindestbestand)
@@ -17,4 +17,3 @@ ELSE
 UPDATE Nachbestellung SET anzahl = anzahlnachbestellung WHERE Nachbestellung.ArtikelID = :OLD.ArtikelID;
 END IF;
 END;
-
