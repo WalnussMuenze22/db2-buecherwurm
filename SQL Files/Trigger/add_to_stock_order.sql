@@ -4,7 +4,7 @@
  * Triggername  :   add_to_stock_order
  * Beschreibung :   Ermitelt die zu bestellenden Artikel. Es sollen 20% mehr Artikel bestellt werden, als der Mindestbestand ist.
  * [E]vent      :   Wenn beim Artikel die verfügbare Menge geändert wird.
- * [C]ondition  :   Wenn die Menge sich verringert hat.
+ * [C]ondition  :   Wenn die vefügbare Menge unter unter dem Mindestbestand liegt. 
  * [A]ction     :   Die benötigten Artikel werden in die nachbestellen Tabelle eingetragen.
  */
 
