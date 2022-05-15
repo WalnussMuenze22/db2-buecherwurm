@@ -19,7 +19,6 @@ BEGIN
             )
         )
         LOOP
-            DBMS_OUTPUT.PUT_LINE('Test' || 32 );
             umsatz := umsatz + zeile.GESAMTPREIS;
         end loop;
     return umsatz;
