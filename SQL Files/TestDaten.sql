@@ -1,6 +1,5 @@
 -- Bücher --
 
---ArtikelID 1
 INSERT INTO BuchInformationen (
         Titel,
         Preis,
@@ -32,7 +31,6 @@ INSERT INTO BuchInformationen (
 );
 
 
---ArtikelID 2
 INSERT INTO BuchInformationen (
         Titel,
         Preis,
@@ -64,7 +62,6 @@ INSERT INTO BuchInformationen (
 );
 
 
---ArtikelID 3
 INSERT INTO BuchInformationen (
         Titel,
         Preis,
@@ -96,7 +93,6 @@ INSERT INTO BuchInformationen (
 );
 
 
---ArtikelID 4
 INSERT INTO BuchInformationen (
         Titel,
         Preis,
@@ -135,7 +131,6 @@ INSERT INTO BuchInformationen (
 
 -- Accounts --
 
---AccountID = 1
 INSERT INTO Account (
         Email,
         PasswortHash,
@@ -150,7 +145,7 @@ INSERT INTO Account (
         1
 );
 
---AccountID = 2
+
 INSERT INTO Account (
         Email,
         PasswortHash,
@@ -165,7 +160,6 @@ INSERT INTO Account (
         1
 );
 
---AccountID = 3
 INSERT INTO Account (
         Email,
         PasswortHash,
@@ -185,13 +179,10 @@ INSERT INTO Account (
 
 -- Kunden --
 
---KundenID = 1
 INSERT INTO Kunde (AccountID) VALUES (1);
 
---KundenID = 2
 INSERT INTO Kunde (AccountID) VALUES (2);
 
---KundenID = 3
 INSERT INTO Kunde (AccountID) VALUES (3);
 
 
@@ -199,8 +190,6 @@ INSERT INTO Kunde (AccountID) VALUES (3);
 
 -- Adressen --
 
-
--- AdresseID = 1
 INSERT INTO Adresse (
         Vorname,
         Nachname,
@@ -219,7 +208,7 @@ INSERT INTO Adresse (
         1
 );
 
--- AdresseID = 2
+
 INSERT INTO Adresse (
         Vorname,
         Nachname,
@@ -238,7 +227,7 @@ INSERT INTO Adresse (
         2
 );
 
--- AdresseID = 3
+
 INSERT INTO ADRESSE (
         Vorname,
         Nachname,
@@ -418,17 +407,38 @@ INSERT INTO Bestellposition (
 
 
 
--- Nachbestellungen --
+/* Bestellung 4 (offen)
+ * 4 mal LTB - Donald gibt nicht auf; MwSt7; Stückpreis 6€
+ * Gesamtpreis: ?
+ */
 
---Die Känguru-Comics 1
-INSERT INTO Nachbestellungen (
-        ArtikelID,
-        Anzahl,
-        Bestellstatus
+INSERT INTO Bestellung (
+        Datum,
+        Status,
+        RechnungsadresseID,
+        LieferadresseID,
+        KundenID
 ) VALUES (
-        2,
-        20,
-        'offen'
+        add_months(SYSDATE, -1),
+        'offen',
+        3,
+        3,
+        3
+);
+
+
+INSERT INTO Bestellposition (
+        ArtikelID,
+        BestellungID,
+        Stueckpreis,
+        Steuersatz,
+        Menge
+) VALUES (
+        3,
+        (SYSDATE || ' - ' || 4),
+        6.00,
+        7,
+        4
 );
 
 
