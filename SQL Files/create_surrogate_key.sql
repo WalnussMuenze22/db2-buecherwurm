@@ -1,8 +1,8 @@
 /**
  * Funktion
- * Von :  Caner Özer
+ * Von : Caner Özer
  * Funktionsname:   create_surrogate_key
- * Beschreibung :   Erstellt einen Surrogate Key für die Bestellungen um an der Bestellnummer direkt erkennen zu können, wann die Bestellung aufgegeben wurde.
+ * Beschreibung :   Erstellt einen Surrogate Key für die Bestellungen, um an der Bestellnummer direkt erkennen zu können, wann die Bestellung aufgegeben wurde.
  * [E]vent      :   Create Bestellung
  * [A]ction     :   Konkatination von Datum und fortlaufender Nummer zurückgeben
  */

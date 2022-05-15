@@ -1,11 +1,11 @@
 /**
  * Trigger
- * Von :  Caner Özer
+ * Von : Caner Özer
  * Triggername  :   add_to_stock_order
- * Beschreibung :   Ermitelt die zu bestellenden Artikel
- * [E]vent      :   Wenn beim Artikel die verfügbare Menge geändert wird
-*  [C]ondition  :   Wenn die Menge sich verringert hat
- * [A]ction     :   Die benötigten Artikel werden in die nachbestellen Tabelle eingetragen
+ * Beschreibung :   Ermitelt die zu bestellenden Artikel. Es sollen 20% mehr Artikel bestellt werden, als der Mindestbestand ist.
+ * [E]vent      :   Wenn beim Artikel die verfügbare Menge geändert wird.
+ * [C]ondition  :   Wenn die Menge sich verringert hat.
+ * [A]ction     :   Die benötigten Artikel werden in die nachbestellen Tabelle eingetragen.
  */
 
 CREATE OR REPLACE TRIGGER add_to_stock_order

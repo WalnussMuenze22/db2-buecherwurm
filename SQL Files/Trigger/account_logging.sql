@@ -3,9 +3,8 @@
  * Von : Leo Petersberg
  * Triggername  :   account_logging
  * Beschreibung :   Wird ausgeführt, wenn ein Account erstellt, verändert oder archiviert wird
- * [E]vent      :   cheate or update Account
+ * [E]vent      :   Create or Update Account
  * [C]ondition  :   Create or Update or Archive
- * [M]ode       :
  * [A]ction     :   Logge Änderung auf Konsole mit DBUser, AccountID und E-Mail
  */
 

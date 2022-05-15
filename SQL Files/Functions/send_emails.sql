@@ -1,11 +1,10 @@
 /**
  * Funktion
  * Von : Leo Petersberg
- * Funktionname  :   send_emails
+ * Funktionname :   send_emails
  * Beschreibung :   Sendet Marketing E-Mails an Kunden, die lange nicht mehr eingeloggt waren
  * [E]vent      :   1x am Tag
- * [C]ondition  :   vor einem halebn Jahr das letzte mal eingeloggt
- * [M]ode       :
+ * [C]ondition  :   Vor einem halben Jahr das letzte mal eingeloggt
  * [A]ction     :   Sende Marketing E-Mail
  */
 
