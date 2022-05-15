@@ -4,7 +4,7 @@ CREATE OR REPLACE FUNCTION showPeriodRevenue(startDatum DATE, endDatum DATE) ret
 BEGIN
     for zeile IN
         (
-        SELECT  GESAMTPREIS FROM BESTELLUNG WHERE (Datum BETWEEN startDatum AND endDatum AND STATUS = 'zugestellt')
+        SELECT  GESAMTPREIS FROM BESTELLUNG WHERE (Datum BETWEEN startDatum AND endDatum )
         )
         LOOP
         DBMS_OUTPUT.PUT_LINE('Test' || 32 );

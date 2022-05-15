@@ -251,7 +251,7 @@ INSERT INTO ADRESSE (
 
 -- Bestellungen mit Bestellposition --
 
-/* Bestellung 1
+/* Bestellung 1 (Offen)
  * 1 mal Känguru Comics; MwSt7; Stückpreis 22€
  * 2 mal LTB - Donald gibt nicht auf; MwSt7; Stückpreis 6€
  * Gesamtpreis: 34€
@@ -301,7 +301,7 @@ INSERT INTO Bestellposition (
 );
 
 
-/* Bestellung 2
+/* Bestellung 2 (zugestellt)
  * 1 mal Känguru Chroniken; MwSt7; Stückpreis 10.99€
  * 5 mal LTB - Donald gibt nicht auf; MwSt7; Stückpreis 6€
  * 3 mal George Orwell 1984; MwSt7; Stückpreis 6.95€
@@ -317,7 +317,7 @@ INSERT INTO Bestellung (
         Gesamtpreis
 ) VALUES (
         DATE '2022-03-02',
-        'offen',
+        'zugestellt',
         3,
         3,
         3,
@@ -369,6 +369,41 @@ INSERT INTO Bestellposition (
         3
 );
 
+
+
+/* Bestellung 3 (editierbar)
+ * 1 mal LTB - Donald gibt nicht auf; MwSt7; Stückpreis 6€
+ * Gesamtpreis: ?
+ */
+
+INSERT INTO Bestellung (
+        Datum,
+        Status,
+        RechnungsadresseID,
+        LieferadresseID,
+        KundenID
+) VALUES (
+        DATE '2022-03-02',
+        'editierbar',
+        3,
+        3,
+        3
+);
+
+
+INSERT INTO Bestellposition (
+        ArtikelID,
+        BestellungID,
+        Stueckpreis,
+        Steuersatz,
+        Menge
+) VALUES (
+        3,
+        3,
+        6.00,
+        7,
+        1
+);
 
 
 COMMIT;
