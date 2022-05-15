@@ -1,3 +1,14 @@
+/**
+ * Trigger
+ * Von : Leo Petersberg
+ * Triggername  :   account_logging
+ * Beschreibung :   Wird ausgeführt, wenn ein Account erstellt, verändert oder archiviert wird
+ * [E]vent      :   cheate or update Account
+ * [C]ondition  :
+ * [M]ode       :
+ * [A]ction     :   logge änderung auf Konsole mit DBUser, AccountID und E-Mail
+ */
+
 create trigger account_logging
     after insert or update
     on ACCOUNT

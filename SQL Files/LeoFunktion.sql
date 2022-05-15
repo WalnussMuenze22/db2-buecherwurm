@@ -1,3 +1,14 @@
+/**
+ * Funktion
+ * Von : Leo Petersberg
+ * Funktionname  :   send_emails
+ * Beschreibung :   Sendet AMrketing E-Mails an Kunden, die lange nicht mehr eingeloggt waren
+ * [E]vent      :   1x am Tag
+ * [C]ondition  :   vor einem Jahr das letzte mal eingeloggt
+ * [M]ode       :
+ * [A]ction     :   Sende Marketing E-Mail
+ */
+
 create procedure send_emails AS
     CURSOR accounts_cursor is (
         -- E-Mail-Adresse von Kunden, die seit zwichen 182 und 183 Tagen nicht eingelogt waren und dazu den Namen des Kunden aus seiner letzten Bestellung
