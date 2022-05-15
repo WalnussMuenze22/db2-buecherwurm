@@ -44,11 +44,6 @@ ORDER BY (Artikel.ArtikelID) ASC
 
 
 
-
-
-
-
-
 CREATE OR REPLACE TRIGGER BuchInformationen_Instead_Of_Insert
     INSTEAD OF INSERT ON BuchInformationen
     FOR EACH ROW
@@ -184,11 +179,6 @@ BEGIN
     END LOOP;
 END;
 /
-
-
-
-
-
 
 
 
@@ -436,11 +426,6 @@ BEGIN
     END IF;
 END;
 /
-
-
-
-
-
 
 
 
