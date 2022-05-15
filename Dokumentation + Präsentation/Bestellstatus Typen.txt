@@ -1,0 +1,24 @@
+editierbar:
+
+- Bestellung wird gerade erstellt
+- Bestellpositionen können noch hinzugefügt, verändert und entfernt werden
+
+
+
+offen:
+
+- Bestellung wurde Aufgegeben
+- Bestellung kann nicht mehr verändert werden
+- Wurde noch nicht von Mitarbeiter bearbeitet (also nicht verpackt und nicht versendet)
+
+
+
+versendet:
+
+- Bestellung wurde an Zusteller übergeben
+
+
+
+zugestellt:
+
+- Kunde hat Paket erhalten
