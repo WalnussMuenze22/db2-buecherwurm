@@ -37,7 +37,7 @@ INSERT INTO Bestellung (
 
 
 
--- Testfälle Trigger create_surrogate_key
+-- Testfälle Trigger add_to_stock_order
 
 --Testfall 1
 --Die Känguru-Chroniken 
