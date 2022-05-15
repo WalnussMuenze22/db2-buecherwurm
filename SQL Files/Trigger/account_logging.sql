@@ -8,7 +8,7 @@
  * [A]ction     :   Logge Änderung auf Konsole mit DBUser, AccountID und E-Mail
  */
 
-create trigger account_logging
+create or replace trigger account_logging
     after insert or update
     on ACCOUNT
     for each row
