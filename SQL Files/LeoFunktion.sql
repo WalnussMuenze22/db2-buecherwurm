@@ -1,37 +1,28 @@
 create procedure send_emails AS
     CURSOR accounts_cursor is (
-        -- E-Mail-Adresse von Kunden, die seit zwichen 182 und 183 Tagen nicht eingelogt waren
-        SELECT ACCOUNT.EMAIL
-        FROM Account
+        -- E-Mail-Adresse von Kunden, die seit zwichen 182 und 183 Tagen nicht eingelogt waren und dazu den Namen des Kunden aus seiner letzten Bestellung
+        SELECT a.EMAIL, Adresse.NACHNAME
+        FROM Account a
+            join Kunde ku on a.ACCOUNTID = ku.ACCOUNTID
+            join Bestellung on ku.KUNDENID = BESTELLUNG.KUNDENID
+            join Adresse on BESTELLUNG.RECHNUNGSADRESSEID = ADRESSE.ADRESSEID
         WHERE   TO_DATE(sysdate) - cast(LETZTERLOGIN as date) >= 182
-            AND TO_DATE(sysdate) - cast(LETZTERLOGIN as date) <  1000
-            AND ACCOUNT.EMAIL IS NOT NULL
+            AND TO_DATE(sysdate) - cast(LETZTERLOGIN as date) <  183
+            AND a.EMAIL IS NOT NULL
+            AND BESTELLUNG.DATUM =
+                --Datum der letzten Bestellung des jeweiligen Kunden
+                (SELECT MAX(Datum)
+                FROM Bestellung
+                WHERE Bestellung.KUNDENID = ku.KUNDENID)
     );
     account_name ADRESSE.NACHNAME%type;
     account_email ACCOUNT.EMAIL%type;
-    l_mail_conn UTL_SMTP.connection;
+    --l_mail_conn UTL_SMTP.connection;
 Begin
     open accounts_cursor;
     Loop
-        FETCH accounts_cursor into account_email;
+        FETCH accounts_cursor into account_email, account_name;
         EXIT when accounts_cursor%notfound;
-        -- Kundenname ermitteln, anhand der letzten Bestellung  des Kunden
-        SELECT Adresse.NACHNAME
-        into account_name
-        FROM Account
-            join Kunde using (AccountID)
-            join Bestellung using (KundenID)
-            join Adresse on BESTELLUNG.RECHNUNGSADRESSEID = ADRESSE.ADRESSEID
-        WHERE ACCOUNT.EMAIL = account_email
-            AND Bestellung.Datum =
-                --Datum der letzten Bestellung des Kunden
-                (SELECT MAX(Datum)
-                FROM Bestellung
-                    join KUNDE K on BESTELLUNG.KUNDENID = K.KUNDENID
-                    join ACCOUNT A2 on K.ACCOUNTID = A2.ACCOUNTID
-                WHERE A2.EMAIL = account_email);
-
-
         dbms_output.put_line('Sending mail to ' || account_email || ' (' || account_name || ')');
 
         --E-Mail senden vom TH Server nicht möglich, aufgrund Berechtigungen: ORA-24247: Netzwerkzugriff von Access Control-Liste (ACL) abgelehnt
