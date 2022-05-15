@@ -8,7 +8,6 @@ create procedure send_emails AS
             join Adresse on BESTELLUNG.RECHNUNGSADRESSEID = ADRESSE.ADRESSEID
         WHERE   TO_DATE(sysdate) - cast(LETZTERLOGIN as date) >= 182
             AND TO_DATE(sysdate) - cast(LETZTERLOGIN as date) <  183
-            AND a.EMAIL IS NOT NULL
             AND BESTELLUNG.DATUM =
                 --Datum der letzten Bestellung des jeweiligen Kunden
                 (SELECT MAX(Datum)
