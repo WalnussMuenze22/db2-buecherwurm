@@ -15,7 +15,7 @@
  *      ->Before update or insert
  */
 
-CREATE OR REPLACE TRIGGER trigger_reduceStock       --Trigger mit dem Namen wird erstellt, oder, wenn bereits bestehend, ersetzt
+CREATE OR REPLACE TRIGGER reduce_stock       --Trigger mit dem Namen wird erstellt, oder, wenn bereits bestehend, ersetzt
     BEFORE UPDATE                                   --Before ->Bevor dem einfügen der Daten
     ON Bestellung
     for each row                                    --berücksichtigt alle Updates, falls es mehrere geben sollte
