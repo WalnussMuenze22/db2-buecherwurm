@@ -19,7 +19,7 @@ INSERT INTO Bestellung (
 
 --Testfall 2
 --BestellungID = 5
---Erwartetes BestellungID = 'sysdate - 1'
+--Erwartetes BestellungID = 'sysdate - 2'
 INSERT INTO Bestellung (
         Datum,
         Status,
