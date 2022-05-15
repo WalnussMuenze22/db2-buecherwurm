@@ -20,7 +20,7 @@ BEGIN
         INTO anzahlBestellposten 
         FROM Nachbestellung 
         WHERE Nachbestellung.ArtikelID = :OLD.ArtikelID;
-    anzahlNachbestellung := (:OLD.MindestBestand * 1.20) - :NEW.AnzahlVerfuegbar;
+    anzahlNachbestellung := ROUND(:OLD.MindestBestand * 1.20 - :NEW.AnzahlVerfuegbar, 0);
     IF (anzahlBestellposten = 0) THEN
         INSERT INTO Nachbestellung (ArtikelID, Anzahl, Bestellstatus)
         VALUES (:NEW.ArtikelID, anzahlnachbestellung, NULL);
