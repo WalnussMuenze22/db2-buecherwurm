@@ -40,7 +40,7 @@ CREATE TABLE Bestellung (
     Datum TIMESTAMP,
     Status VARCHAR(30),
     RechnungsadresseID NUMBER NOT NULL,
-    LieferadresseID NUMBER Not NULL
+    LieferadresseID NUMBER Not NULL,
     KundenID NUMBER NOT NULL,
     Gesamtpreis NUMBER
 );
@@ -144,7 +144,7 @@ CREATE TABLE StatMonatsumsatz (
 -- Tabelle StatTopArtikel
 CREATE TABLE StatTopArtikel (
     MonatsID NUMBER PRIMARY KEY,
-    ArtikelID NUMBER NOT NULL,
+    ArtikelID NUMBER NOT NULL
 );
 
 
