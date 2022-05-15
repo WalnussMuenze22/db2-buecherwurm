@@ -8,7 +8,7 @@
  * [A]ction     :   Sende Marketing E-Mail
  */
 
-create procedure send_emails AS
+create or replace procedure send_emails AS
     CURSOR accounts_cursor is (
         -- E-Mail-Adresse von Kunden, die seit zwichen 182 und 183 Tagen nicht eingelogt waren und dazu den Namen des Kunden aus seiner letzten Bestellung
         SELECT a.EMAIL, Adresse.NACHNAME
