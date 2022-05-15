@@ -6,7 +6,7 @@
  */
 
 
-CREATE OR REPLACE PROCEDURE adjust_minimum_Stock
+CREATE OR REPLACE PROCEDURE adjust_minimum_stock
 IS
     -- Der Wert für MindestBestand in Prozent gemessen am gesamt Verkauf im letzten Monat
     v_minBestandProzent NUMBER := 40;
@@ -62,7 +62,7 @@ BEGIN
         
         job_name           =>  'adjust_mininum_stock_every_month',
         job_type           =>  'STORED_PROCEDURE',
-        job_action         =>  'ADJUST_MINIMUM_STOCK',
+        job_action         =>  'adjust_mininum_stock',
         
         auto_drop          =>   FALSE,
         enabled            =>   TRUE
