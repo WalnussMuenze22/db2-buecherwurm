@@ -36,9 +36,9 @@ CREATE TABLE Account (
 
 -- Tabelle Bestellung
 CREATE TABLE Bestellung (
-    BestellungID NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    BestellungID VARCHAR(50) PRIMARY KEY,
     Datum TIMESTAMP,
-    Status VARCHAR(30),
+    Status VARCHAR(30) DEFAULT 'editierbar',
     RechnungsadresseID NUMBER NOT NULL,
     LieferadresseID NUMBER Not NULL,
     KundenID NUMBER NOT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE Adresse (
 CREATE TABLE Bestellposition (
     BestellpositionID NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     ArtikelID NUMBER NOT NULL,
-    BestellungID NUMBER NOT NULL,
+    BestellungID VARCHAR(50) NOT NULL,
     Stueckpreis NUMBER,
     Steuersatz NUMBER,
     Menge NUMBER
