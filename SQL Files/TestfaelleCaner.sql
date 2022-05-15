@@ -43,7 +43,7 @@ INSERT INTO Bestellung (
 --Die Känguru-Chroniken 
 --Midestanzahl ist 8
 --Vefügbar von 10 auf 5 setzen 
---Es sollten 4,6 Känguru-Chroniken nachbestellt werden 
+--Es sollten 4 (4,6) Känguru-Chroniken nachbestellt werden 
 UPDATE Artikel SET AnzahlVerfuegbar = 5 WHERE ArtikelID = 1;
 
 --Testfall 2
