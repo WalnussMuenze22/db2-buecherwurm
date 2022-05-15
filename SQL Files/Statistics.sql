@@ -1,73 +1,39 @@
---Statistics
-CREATE TYPE statistics AS OBJECT(
-	MonatsID NUMBER,
-	ArtikelID NUMBER,
-	Umsatz NUMBER
-);
-					   
-CREATE OR REPLACE FUNCTION show_statistics(typ IN NUMBER,monat IN NUMBER)
-	RETURN statistics
-	IS
-		var_top_artikel statistics;
-		var_monats_umsatz statistics;
-	cursor top_artikel is
-		SELECT statistics(MonatsID, ArtikelID, 0)
-		FROM StatTopArtikel
-		WHERE MonatsID = monat
-		ORDER BY MonatsID DESC;
-	cursor monats_umsatz is
-		SELECT statistics(MonatsID, 0, Umsatz)
-		FROM StatMonatsumsatz
-		WHERE MonatsID = monat
-		ORDER BY MonatsID DESC;
-BEGIN
-	open top_artikel;
-	fetch top_artikel into var_top_artikel;
-
-	open monats_umsatz;
-	fetch monats_umsatz into var_monats_umsatz;
-
-	if typ = 0 then
-		if var_monats_umsatz.ArtikelID = 0 AND var_monats_umsatz.MonatsID = 0 AND var_monats_umsatz.Umsatz = 0 then
-			raise_application_error(-2,'Keine Monatsumsätze');
-		end if;
-		close monats_umsatz;
-		RETURN var_monats_umsatz;
+CREATE OR REPLACE FUNCTION show_statistics(startZeit DATE,endZeit DATE)
+	RETURN NUMBER
+	AS
+		v_median NUMBER := 0;
+		v_uppermedian NUMBER;
+		v_lowermedian NUMBER;
+		v_bestellunganzahl NUMBER;
+BEGIN	
+	SELECT COUNT(*)
+	INTO v_bestellunganzahl
+	FROM Bestellung
+	WHERE Datum BETWEEN startZeit AND endZeit AND Status IN ('offen','versendet','zugestellt');
+	
+	if mod(v_bestellunganzahl, 2) = 0 then
+		SELECT Gesamtpreis
+		INTO v_lowermedian
+		FROM Bestellung
+		WHERE Datum BETWEEN startZeit AND endZeit AND Status IN ('offen','versendet','zugestellt')
+		ORDER BY Gesamtpreis
+		OFFSET ROUND(v_bestellunganzahl/2, 0) ROW FETCH NEXT 1 row only;
+		
+		SELECT Gesamtpreis
+		INTO v_uppermedian
+		FROM Bestellung
+		WHERE Datum BETWEEN startZeit AND endZeit AND Status IN ('offen','versendet','zugestellt')
+		ORDER BY Gesamtpreis
+		OFFSET (ROUND(v_bestellunganzahl/2, 0)+1) ROW FETCH NEXT 1 row only;
+		v_median := ((v_uppermedian - v_lowermedian)/2);
+	else
+		SELECT Gesamtpreis
+		INTO v_median
+		FROM Bestellung
+		WHERE Datum BETWEEN startZeit AND endZeit AND Status IN ('offen','versendet','zugestellt')
+		ORDER BY Gesamtpreis
+		OFFSET ROUND(v_bestellunganzahl/2, 0) ROW FETCH NEXT 1 row only;
 	end if;
-	if typ = 1 then
-		if var_top_artikel.ArtikelID = 0 AND var_top_artikel.MonatsID = 0 AND var_top_artikel.Umsatz = 0 then
-			raise_application_error(-2,'Keine Top-Artikel');
-		end if;
-		close top_artikel;
-		RETURN var_top_artikel;
-	end if;
-	RETURN statistics(0,0,0);
-END;
-COMMIT;
-
-BEGIN
-	--Function Test
-	DBMS_OUTPUT.PUT_LINE('Statistiken Monatsumsätze: '  ||  show_statistics(0,202204,1));
-	DBMS_OUTPUT.PUT_LINE('Statistiken Top-Artikel: '  ||  show_statistics(1,202204,1));
-END;
-
-BEGIN;
-	--Trigger Test
-	SELECT *
-	FROM ACCOUNT
-	WHERE ACCOUNTID = 2;
 	
-	SELECT *
-	FROM ACCOUNT_ARCHIVE;
-	
-	DELETE FROM ACCOUNT 
-	WHERE ACCOUNTID = 2;
-	
-	SELECT *
-	FROM ACCOUNT
-	WHERE ACCOUNTID = 2;
-	
-	SELECT *
-	FROM ACCOUNT_ARCHIVE;
-	
+	RETURN v_median;
 END;
