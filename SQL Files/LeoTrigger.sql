@@ -1,4 +1,4 @@
-create trigger ACCOUNTLOGGING
+create trigger account_logging
     after insert or update
     on ACCOUNT
     for each row
