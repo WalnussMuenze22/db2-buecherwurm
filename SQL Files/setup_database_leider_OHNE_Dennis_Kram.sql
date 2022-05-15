@@ -56,7 +56,7 @@ CREATE TABLE Bestellung (
     RechnungsadresseID NUMBER NOT NULL,
     LieferadresseID NUMBER Not NULL,
     KundenID NUMBER NOT NULL,
-    Gesamtpreis NUMBER
+    Gesamtpreis NUMBER NOT NULL DEFAULT 0.0
 );
 
 -- Tabelle Adresse
