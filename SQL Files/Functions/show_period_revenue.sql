@@ -13,7 +13,10 @@ IS
 BEGIN
     for zeile IN
         (
-            SELECT  GESAMTPREIS FROM BESTELLUNG WHERE (Datum BETWEEN startDatum AND endDatum )
+            SELECT  GESAMTPREIS FROM BESTELLUNG WHERE (
+                Datum BETWEEN startDatum AND endDatum
+                AND Bestellung.Status IN ('offen', 'versendet', 'zugestellt')
+            )
         )
         LOOP
             DBMS_OUTPUT.PUT_LINE('Test' || 32 );
