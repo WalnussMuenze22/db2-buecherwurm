@@ -149,6 +149,14 @@ CREATE TABLE StatTopArtikel (
 
 
 
+-- Tabelle LogAccountActive
+CREATE TABLE LogAccountActive (
+    AccountID NUMBER ,
+    Datum DATE,
+    Aktiv NUMBER
+);
+
+
 
 -- Kunde - Account (1)
 ALTER TABLE Kunde 
@@ -210,3 +218,7 @@ ADD CONSTRAINT nachbestellung_artikel FOREIGN KEY (ArtikelID) REFERENCES Artikel
 -- Adresse - Kunde (13)
 Alter Table Adresse
 ADD CONSTRAINT adresse_kunde FOREIGN KEY (KundenID) REFERENCES Kunde (KundenID);
+
+--Account - LogAccountActive (14)
+ALTER TABLE LogAccountActive
+ADD CONSTRAINT logaccountactive_account FOREIGN KEY (AccountID) REFERENCES Account (AccountID);
