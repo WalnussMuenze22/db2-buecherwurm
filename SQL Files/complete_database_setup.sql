@@ -166,7 +166,6 @@ CREATE TABLE StatTopArtikel (
 CREATE TABLE LogAccountActive (
     AccountID NUMBER ,
     Datum DATE,
-    Aktiv NUMBER
 );
 
 

@@ -31,7 +31,6 @@ CREATE TABLE Account (
     PasswortHash VARCHAR(255) NOT NULL,
     AccountTyp VARCHAR(30),
     LetzterLogin TIMESTAMP,
-    Aktiv NUMBER
 );
 
 -- Tabelle Bestellung
