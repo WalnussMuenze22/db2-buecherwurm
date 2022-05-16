@@ -100,21 +100,9 @@ BEGIN
         raise_application_error(-20123, 'show_period_revenue Test2 failed: expected ' || 16 || ' but got ' || v_test_num1);
     END IF;
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
+    
+    
     -- create_surrogate_key Test1: Key 'sysdate - 3' existiert
     SELECT COUNT(*) AS keysWithValue
     INTO v_test_num1
@@ -128,7 +116,6 @@ BEGIN
     END IF;
     
     
-    
     -- create_surrogate_key Test2: Key 'sysdate - 4' existiert    
     SELECT COUNT(*) AS keysWithValue
     INTO v_test_num1
@@ -136,13 +123,15 @@ BEGIN
     WHERE BestellungID = (sysdate || ' - 4');
     
     IF (v_test_num1 = 1) THEN
-    DBMS_OUTPUT.PUT_LINE('create_surrogate_key Test2 passed');
+        DBMS_OUTPUT.PUT_LINE('create_surrogate_key Test2 passed');
     ELSE
-    raise_application_error(-20123, 'create_surrogate_key Test2 failed: key ' || (sysdate || ' - 4') || ' not found!');
+        raise_application_error(-20123, 'create_surrogate_key Test2 failed: key ' || (sysdate || ' - 4') || ' not found!');
     END IF;
-
-
-
+    
+    
+    
+    
+    
 
 
 
