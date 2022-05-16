@@ -1,3 +1,11 @@
+/**
+ * Funktion
+ * Von : Denis Kliewer
+ * Triggername  :   get_gesamtpreis_median
+ * Beschreibung :   Gibt den Median der Gesamtpreise in einem Bestimmten Zeitraum zurück
+ */
+
+
 CREATE OR REPLACE FUNCTION get_gesamtpreis_median(startZeit DATE,endZeit DATE)
 	RETURN NUMBER
 	AS
