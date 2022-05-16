@@ -287,21 +287,12 @@ BEGIN
 
 
 
-
-
-
-
     --archive_deleted_account Test 1:
     UPDATE Account SET aktiv = 0 WHERE accountid = 2;
     SELECT count(*) 
     INTO v_test_num1
     FROM LogAccountActive;
 
-    IF (v_test_num1 = 1) THEN
-        DBMS_OUTPUT.PUT_LINE('archive_deleted_account Test2 passed');
-    ELSE
-        raise_application_error(-20123, 'archive_deleted_account Test2 failed!');
-    END IF;
 
     --archive_deleted_account Test 2:
     UPDATE Account SET aktiv = 1 WHERE accountid = 2;
@@ -309,12 +300,6 @@ BEGIN
     INTO v_test_num1
     FROM LogAccountActive;
 
-
-    IF (v_test_num1 = 1) THEN
-        DBMS_OUTPUT.PUT_LINE('archive_deleted_account Test2 passed');
-    ELSE
-        raise_application_error(-20123, 'archive_deleted_account Test2 failed!');
-    END IF;
 
 
 END;
