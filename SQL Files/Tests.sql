@@ -302,4 +302,21 @@ BEGIN
 
 
 
+    --archive_deleted_account Test 1:
+    SELECT * FROM Account;
+    SELECT * FROM LogAccountActive;
+    UPDATE Account SET aktiv = 0 WHERE accountid = 2;
+    SELECT * FROM Account;
+    SELECT * FROM LogAccountActive;
+
+    --archive_deleted_account Test 2:
+    SELECT * FROM Account;
+    SELECT * FROM LogAccountActive;
+    UPDATE AccountSET aktiv = 1 WHERE accountid = 2;
+    SELECT * FROM Account;
+    SELECT * FROM LogAccountActive;
+
+
+
+
 END;

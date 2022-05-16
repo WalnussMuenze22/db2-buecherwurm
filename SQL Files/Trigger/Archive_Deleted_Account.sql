@@ -23,16 +23,3 @@ BEGIN
 	INSERT INTO LogAccountActive(ACCOUNTID, Datum, Aktiv) VALUES (:old.AccountID, SYSTIMESTAMP, v_Aktiv);
 END;
 
---Testfall 1 - archive_deleted_account
-SELECT * FROM Account;
-SELECT * FROM LogAccountActive;
-UPDATE Account SET aktiv = 0 WHERE accountid = 2;
-SELECT * FROM Account;
-SELECT * FROM LogAccountActive;
-
---Testfall 2 - archive_deleted_account
-SELECT * FROM Account;
-SELECT * FROM LogAccountActive;
-UPDATE AccountSET aktiv = 1 WHERE accountid = 2;
-SELECT * FROM Account;
-SELECT * FROM LogAccountActive;
