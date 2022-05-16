@@ -1079,6 +1079,17 @@ END;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 create or replace TRIGGER archive_deleted_account
 	AFTER UPDATE
     OF Aktiv
