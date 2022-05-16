@@ -74,9 +74,9 @@ BEGIN
     ;
     
     IF (v_test_num1 = 16) THEN
-        DBMS_OUTPUT.PUT_LINE('show_period_revenue Test1 passed');
+        DBMS_OUTPUT.PUT_LINE('adjust_minimum_Stock Test1 passed');
     ELSE
-        raise_application_error(-20123, 'show_period_revenue Test1 failed: expected ' || 8 || ' but got ' || v_test_num1);
+        raise_application_error(-20123, 'adjust_minimum_Stock Test1 failed: expected ' || 16 || ' but got ' || v_test_num1);
     END IF;
     
     
@@ -95,9 +95,9 @@ BEGIN
     ;
     
     IF (v_test_num1 = 32) THEN
-        DBMS_OUTPUT.PUT_LINE('show_period_revenue Test2 passed');
+        DBMS_OUTPUT.PUT_LINE('adjust_minimum_Stock Test2 passed');
     ELSE
-        raise_application_error(-20123, 'show_period_revenue Test2 failed: expected ' || 16 || ' but got ' || v_test_num1);
+        raise_application_error(-20123, 'adjust_minimum_Stock Test2 failed: expected ' || 32 || ' but got ' || v_test_num1);
     END IF;
     
     
