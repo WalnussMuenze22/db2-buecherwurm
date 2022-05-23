@@ -1,0 +1,57 @@
+Optionen, die jderzeit möglich sind:
+-Warenkorb anzeigen lassen
+-Zur Startseite zurückkehren
+-Artikel auswählen
+-Artikelmenge wählen und in den Einkaufswagen packen
+
+Optionen, die nur *nicht* eingeloggten zusteht:
+-einloggen
+-Registrieren
+
+Optionen, die nur eingeloggten Kunden zusteht:
+-Kaufen
+-Accountdetails ändern
+    -Adresse
+    -Account löschen
+    -Passwort ändern
+    -Bestellhistorie einsehen
+
+-------------------------------------------
+
+Folgende HTML Seiten sind zu erstellen:
+
+
+-Startseite (Alle Artikel dargestellt)
+
+-Artikelseite (View mit allen Buchdetails)
+    ->Dropdown Menu zur Stückzahlwahl
+    ->Button "zum Einkaufswagen hinzufügen"
+-Warenkorb
+
+-Einloggfenster
+    ->Email Eingabefeld
+    ->Passwort Eingabefeld
+    ->Einloggbutton
+
+-Registrierungsfenster
+    ->Email Eingabefeld
+    ->Passwort Eingabefeld
+    ->Registrierungsbutton
+
+-Accountseite
+    ->Bestellhistorie anzeigen Button
+    ->Accountdetails bearbeiten Button
+        ->Eingabefelder
+        ->Bestätigungsbutton
+
+-Checkoutseite
+    ->Rechnungs- und Lieferadresse prüfen ggf. ändern
+    ->Bestellpositionen anzeigen 
+    ->Gesamtsumme + Steuern + Versand
+    ->Button zum Kaufabschluss
+
+-Beständiger HTML "Rahmen" 
+    ->Button zur Startseite (bspw. Logo)
+    ->Button für den Warenkorb
+    ->Button für den Account
+    ->Button zum Einloggen/Registrieren oder Ausloggen
