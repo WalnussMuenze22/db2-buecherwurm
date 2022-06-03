@@ -1,0 +1,36 @@
+body {
+	font: 1rem/1.5 var(--bs-font-sans-serif);
+}
+#header {
+	height: 50px;
+	color: var(--bs-black);
+	background-color: var(--bs-gray-300);
+}
+
+#logo {
+	height:50px;
+	width:50px;
+}
+#home {
+	height:50px;
+	width:50px;
+}
+
+.responsiveImg {
+	max-width: 40px;
+	max-height: 40px;
+}
+
+body {
+	padding-top: 85px;
+	height:2000px;
+}
+
+/*.shoppingCart {
+	width: 30px !important;
+	height: 30px !important;
+}*/
+
+.mengeAktiv {
+	width: 35px !important;
+}
