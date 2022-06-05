@@ -48,14 +48,14 @@ Dokumentation und Präsentation wurden erstellt
 
 Präsentationsanteile wurden verteilt:
 
-| Name | Folien |
-| ------ | ------ |
-| Sven | 1 -3  |
-| Jesaja | 4 |
-|Dennis|5|
-|Leo|6|
-|Caner |7|
-|Jesaja|8|
+| Name   | Folien |
+|--------|--------|
+| Sven   | 1 -3   |
+| Jesaja | 4      |
+| Dennis | 5      |
+| Leo    | 6      |
+| Caner  | 7      |
+| Jesaja | 8      |
 
 
 
