@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="de">
-    <?php include 'head.php' ?>
+    <head>
+        <?php include 'head.php' ?>
+        <script src="menge.js"></script>
+    </head>
 	<body >
         <?php include 'header.php' ?>
 		<div class="container">

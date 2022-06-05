@@ -3,7 +3,7 @@ body {
 }
 #header {
 	height: 50px;
-	color: var(--bs-black);
+	color: var(--bs-black-rgb);
 	background-color: var(--bs-gray-300);
 }
 
@@ -23,7 +23,6 @@ body {
 
 body {
 	padding-top: 85px;
-	height:2000px;
 }
 
 /*.shoppingCart {
