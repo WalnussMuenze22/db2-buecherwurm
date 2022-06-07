@@ -3,7 +3,7 @@ body {
 }
 #header {
 	height: 50px;
-	color: var(--bs-black-rgb);
+	color: var(--bs-black);
 	background-color: var(--bs-gray-300);
 }
 
@@ -17,12 +17,14 @@ body {
 }
 
 .responsiveImg {
-	max-width: 40px;
-	max-height: 40px;
+	max-width: 2.5rem;
+	max-height: 2.5rem;
 }
 
 body {
-	padding-top: 85px;
+	padding-top: 5.313rem;
+	padding-bottom: 5.313rem;
+	/*height:125rem;*/
 }
 
 /*.shoppingCart {
@@ -31,5 +33,46 @@ body {
 }*/
 
 .mengeAktiv {
-	width: 35px !important;
+	width: 2.188rem !important;
 }
+
+.gesPreis {
+	text-align: right !important;
+}
+
+.checkoutWidth {
+	width: 6rem !important;
+}
+
+.Freed {
+	display: block !important;
+}
+
+.storeBlocked {
+	display: none !important;
+}
+
+#login {
+	display: none;
+}
+
+#storeItems {
+	display: block;
+}
+
+#register {
+	display: none;
+}
+
+#account {
+	display: none;
+}
+
+#account > .active {
+	background-color: #198754 !important;
+}
+
+#about {
+	display: block;
+}
+
