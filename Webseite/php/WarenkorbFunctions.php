@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER["DOCUMENT_ROOT"] . "/db2-buecherwurm/Webseite/php/databaseConnection.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/php/databaseConnection.php";
 
 
 class WarenkorbFunctions
@@ -15,6 +15,7 @@ class WarenkorbFunctions
      */
     static function getOrCreateWarenkorb()
     {
+        session_start();
         $kundenID = $_SESSION['userID'];
         $NumberOfOrders = WarenkorbFunctions::getNumberOfOrdersInCreation(DatabaseConnection::getDatabaseConnection(), $kundenID);
         if ($NumberOfOrders == 0) {
@@ -36,8 +37,9 @@ class WarenkorbFunctions
      */
     private static function getNumberOfOrdersInCreation()
     {
+        session_start();
         $kundeID = $_SESSION['userID'];
-        $sql = "SELECT COUNT(*) AS anzahl FROM bestellung WHERE kundenid = :kundeID AND status = 'wird erstellt'";
+        $sql = "SELECT COUNT(*) AS anzahl FROM bestellung WHERE kundenid = :kundeID AND status = 'editierbar'";
         $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), $sql);
         oci_bind_by_name($stmt, ":kundeID", $kundeID);
         if (oci_execute($stmt)) {
@@ -59,28 +61,30 @@ class WarenkorbFunctions
      */
     private static function getWarenkorb()
     {
+        session_start();
         $userID = $_SESSION['userID'];
-        $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "SELECT BestellungID FROM Bestellung WHERE KundenID = :userID AND Status = 'wird erstellt'");
+        $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "SELECT BestellungID FROM Bestellung WHERE KundenID = :userID AND Status = 'editierbar'");
         oci_bind_by_name($stmt, ':userID', $userID);
-        oci_execute($stmt);
+        oci_execute($stmt, OCI_COMMIT_ON_SUCCESS);
         $row = oci_fetch_array($stmt, OCI_ASSOC + OCI_RETURN_NULLS);
-        $id = $row['ID'];
+        $id = $row['BESTELLUNGID'];
         return $id;
     }
 
 
 
     /**
-     * It inserts a new row into the table Bestellung with the current date, the status "wird erstellt" and
+     * It inserts a new row into the table Bestellung with the current date, the status "editierbar" and
      * the userID.
      * 
      */
     private static function createWarenkorb()
     {
+        session_start();
         $userID = $_SESSION['userID'];
-        $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "INSERT INTO Bestellung (Datum, Status, KundenID) VALUES (SYSDATE, 'wird erstellt', :userID)");
+        $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "INSERT INTO Bestellung (Datum, KundenID) VALUES (SYSDATE, :userID)");
         oci_bind_by_name($stmt, ':userID', $userID);
-        oci_execute($stmt);
+        oci_execute($stmt, OCI_COMMIT_ON_SUCCESS);
     }
 
 
@@ -93,6 +97,7 @@ class WarenkorbFunctions
      */
     static function getWarenkorbItems($BestellungID)
     {
+        session_start();
         $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "SELECT BestellpositionID,
                                     Titel,
                                     Verlag,
@@ -105,7 +110,7 @@ class WarenkorbFunctions
                             JOIN Artikel on Artikel.ArtikelID = Bestellposition.ArtikelID
                             WHERE BestellungID = :BestellungID");
         oci_bind_by_name($stmt, ':BestellungID', $BestellungID);
-        oci_execute($stmt);
+        oci_execute($stmt, OCI_COMMIT_ON_SUCCESS);
         $rows = array();
         while ($row = oci_fetch_array($stmt, OCI_ASSOC + OCI_RETURN_NULLS)) {
             $rows[] = $row;
@@ -123,9 +128,10 @@ class WarenkorbFunctions
      */
     static function getWarenkorbTotal($BestellungID)
     {
+        session_start();
         $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "SELECT Gesamtpreis FROM Bestellung WHERE BestellungID = :BestellungID");
         oci_bind_by_name($stmt, ':BestellungID', $BestellungID);
-        oci_execute($stmt);
+        oci_execute($stmt, OCI_COMMIT_ON_SUCCESS);
         $row = oci_fetch_array($stmt, OCI_ASSOC + OCI_RETURN_NULLS);
         return $row['GESAMTPREIS'];
     }
@@ -140,11 +146,13 @@ class WarenkorbFunctions
      */
     static function addItemToWarenkorb($BestellungID, $ArtikelID, $Menge)
     {
+        session_start();
         $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "INSERT INTO Bestellposition (BestellungID, ArtikelID, Menge) VALUES (:BestellungID, :ArtikelID, :Menge)");
         oci_bind_by_name($stmt, ':BestellungID', $BestellungID);
         oci_bind_by_name($stmt, ':ArtikelID', $ArtikelID);
         oci_bind_by_name($stmt, ':Menge', $Menge);
-        oci_execute($stmt);
+        oci_execute($stmt, OCI_COMMIT_ON_SUCCESS);
+        oci_commit(DatabaseConnection::getDatabaseConnection());
     }
 
 
@@ -157,9 +165,10 @@ class WarenkorbFunctions
      */
     static function deleteItemFromWarenkorb($BestellpositionID)
     {
+        session_start();
         $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "DELETE FROM Bestellposition WHERE BestellpositionID = :BestellpositionID");
         oci_bind_by_name($stmt, ':BestellpositionID', $BestellpositionID);
-        oci_execute($stmt);
+        oci_execute($stmt, OCI_COMMIT_ON_SUCCESS);
     }
 
 
@@ -172,10 +181,11 @@ class WarenkorbFunctions
      */
     static function updateItemInWarenkorb($BestellpositionID, $Menge)
     {
+        session_start();
         $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "UPDATE Bestellposition SET Menge = :Menge WHERE BestellpositionID = :BestellpositionID");
         oci_bind_by_name($stmt, ':BestellpositionID', $BestellpositionID);
         oci_bind_by_name($stmt, ':Menge', $Menge);
-        oci_execute($stmt);
+        oci_execute($stmt, OCI_COMMIT_ON_SUCCESS);
     }
 
 
@@ -190,10 +200,11 @@ class WarenkorbFunctions
      */
     static function sendOrder($BestellungID, $RechnungsadresseID, $LieferadresseID)
     {
+        session_start();
         $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "UPDATE Bestellung SET Status = 'offen', RechnungsadresseID = :RechnungsadresseID, LieferadresseID = :LieferadresseID WHERE BestellungID = :BestellungID");
         oci_bind_by_name($stmt, ':BestellungID', $BestellungID);
         oci_bind_by_name($stmt, ':RechnungsadresseID', $RechnungsadresseID);
         oci_bind_by_name($stmt, ':LieferadresseID', $LieferadresseID);
-        oci_execute($stmt);
+        oci_execute($stmt, OCI_COMMIT_ON_SUCCESS);
     }
 }

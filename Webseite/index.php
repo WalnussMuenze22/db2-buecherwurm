@@ -9,7 +9,7 @@
 			<?php
 				require_once $_SERVER["DOCUMENT_ROOT"] . "/php/databaseConnection.php";
 
-				$stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "SELECT Titel, Beschreibung, AutorenListe, Verlag, Preis FROM Buchinformationen ORDER BY Titel ASC");
+				$stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "SELECT ArtikelID, Titel, Beschreibung, AutorenListe, Verlag, Preis FROM Buchinformationen ORDER BY Titel ASC");
 				oci_execute($stmt);
 				while($row = oci_fetch_array($stmt, OCI_ASSOC + OCI_RETURN_NULLS)){
 					$autorenListe = explode('#', $row["AUTORENLISTE"]);
@@ -27,18 +27,19 @@
 							<li class="list-group-item" id="preis">Preis: '.$row['PREIS'].'€</li>
 						</ul>
 						<div class="card-body">
-							<form>
+							<form action="/php/add-to-cart-handling.php" method="post" autofill="off">
 								<div class="row justify-content-md-center">
 									<div class="col pt-1">
-										<input type="text" class="form-control pt-1" placeholder="Menge..." id="menge">
+										<input type="number" class="form-control pt-1" placeholder="Menge..." id="menge" required="" name="menge">
 									</div>
 									<div class="col">
-										<button type="button" class="btn btn-success btn-sm shoppingCart">
+										<button type="submit" class="btn btn-success btn-sm shoppingCart">
 											<span class="material-icons pt-1">
 											shopping_cart
 											</span>
 										</button>
 									</div>
+									<input type="number" name="artikelId" style="display: none;" value="'.$row['ARTIKELID'].'" required="">
 								</div>
 							</form>
 						</div>
