@@ -1,5 +1,3 @@
-var itemBefore;
-
 function openLogin(){
     var temp2 = document.getElementById("login");
     temp2.classList.add("Freed");
@@ -7,7 +5,6 @@ function openLogin(){
     temp3.classList.remove("Freed");
     var temp4 = document.getElementById("account");
     temp4.classList.remove("Freed");
-    
 }
 
 function openRegister(){
@@ -17,7 +14,6 @@ function openRegister(){
     temp3.classList.remove("Freed");
     var temp4 = document.getElementById("account");
     temp4.classList.remove("Freed");
-    
 }
 
 function openAccount(){

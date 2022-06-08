@@ -7,7 +7,7 @@
 			<div class="row row-cols-auto">
 				<div class="col mt-2">
 					<div class="card" style="width: 18rem;">
-						<img src="logo.jpg" class="card-img-top" alt="..." id="art_image">
+						<img src="images/logo.jpg" class="card-img-top" alt="..." id="art_image">
 						<div class="card-body">
 							<h5 class="card-title" id="art_title">Titel</h5>
 							<p class="card-text" id="art_besch">Buchbeschreibung...</p>
@@ -37,7 +37,7 @@
 				</div>
 				<div class="col mt-2">
 					<div class="card" style="width: 18rem;">
-						<img src="logo.jpg" class="card-img-top" alt="...">
+						<img src="images/logo.jpg" class="card-img-top" alt="...">
 						<div class="card-body">
 						  <h5 class="card-title">Titel 2</h5>
 						  <p class="card-text">Buchbeschreibung...</p>
@@ -67,7 +67,7 @@
 				</div>
 				<div class="col mt-2">
 					<div class="card" style="width: 18rem;">
-						<img src="logo.jpg" class="card-img-top" alt="...">
+						<img src="images/logo.jpg" class="card-img-top" alt="...">
 						<div class="card-body">
 						  <h5 class="card-title">Titel 3</h5>
 						  <p class="card-text">Buchbeschreibung...</p>
@@ -97,7 +97,7 @@
 				</div>
 				<div class="col mt-2">
 					<div class="card" style="width: 18rem;">
-						<img src="logo.jpg" class="card-img-top" alt="...">
+						<img src="images/logo.jpg" class="card-img-top" alt="...">
 						<div class="card-body">
 						  <h5 class="card-title">Titel 3</h5>
 						  <p class="card-text">Buchbeschreibung...</p>
@@ -127,7 +127,7 @@
 				</div>
 				<div class="col mt-2">
 					<div class="card" style="width: 18rem;">
-						<img src="logo.jpg" class="card-img-top" alt="...">
+						<img src="images/logo.jpg" class="card-img-top" alt="...">
 						<div class="card-body">
 						  <h5 class="card-title">Titel 3</h5>
 						  <p class="card-text">Buchbeschreibung...</p>
@@ -157,7 +157,7 @@
 				</div>
 				<div class="col mt-2">
 					<div class="card" style="width: 18rem;">
-						<img src="logo.jpg" class="card-img-top" alt="...">
+						<img src="images/logo.jpg" class="card-img-top" alt="...">
 						<div class="card-body">
 						  <h5 class="card-title">Titel 3</h5>
 						  <p class="card-text">Buchbeschreibung...</p>
@@ -187,7 +187,7 @@
 				</div>
 				<div class="col mt-2">
 					<div class="card" style="width: 18rem;">
-						<img src="logo.jpg" class="card-img-top" alt="...">
+						<img src="images/logo.jpg" class="card-img-top" alt="...">
 						<div class="card-body">
 						  <h5 class="card-title">Titel 3</h5>
 						  <p class="card-text">Buchbeschreibung...</p>
@@ -217,7 +217,7 @@
 				</div>
 				<div class="col mt-2">
 					<div class="card" style="width: 18rem;" id="xyz">
-						<img src="logo.jpg" class="card-img-top" alt="...">
+						<img src="images/logo.jpg" class="card-img-top" alt="...">
 						<div class="card-body">
 						  <h5 class="card-title">Titel 3</h5>
 						  <p class="card-text">Buchbeschreibung...</p>
@@ -247,7 +247,7 @@
 				</div>
 				<div class="col mt-2">
 					<div class="card" style="width: 18rem;">
-						<img src="logo.jpg" class="card-img-top" alt="...">
+						<img src="images/logo.jpg" class="card-img-top" alt="...">
 						<div class="card-body">
 						  <h5 class="card-title">Titel 3</h5>
 						  <p class="card-text">Buchbeschreibung...</p>
@@ -277,7 +277,7 @@
 				</div>
 				<div class="col mt-2">
 					<div class="card" style="width: 18rem;">
-						<img src="logo.jpg" class="card-img-top" alt="...">
+						<img src="images/logo.jpg" class="card-img-top" alt="...">
 						<div class="card-body">
 						  <h5 class="card-title">Titel 3</h5>
 						  <p class="card-text">Buchbeschreibung...</p>

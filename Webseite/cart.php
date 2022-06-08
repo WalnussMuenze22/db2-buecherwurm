@@ -81,7 +81,7 @@
                         <td>70 €</td>
                         <td>
                             <form>
-                                <button type="button" class="btn btn-success checkoutWidth"><img src="checkout.png" alt="Checkout"></button>
+                                <button type="button" class="btn btn-success checkoutWidth"><img src="images/checkout.png" alt="Checkout"></button>
                             </form>
                         </td>
                     </tr>   
