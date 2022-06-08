@@ -11,18 +11,22 @@
 					</button>
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+							<!-- Start -->
 							<li class="nav-item active">
 								<a class="nav-link active" href="../index.php" id="start-link">Start</a>
 							</li>
+							<!-- Über uns -->
 							<li class="nav-item">
 								<a href="../about.php" class="nav-link" id="about-link">Über uns</a>
 							</li>
 						</ul>
-						<form class="d-flex">
+						<ul class="navbar-nav">
+							<!-- Suche -->
+							<form class="d-flex">
 								<input class="form-control me-2" type="search" placeholder="Suchbegriff..." aria-label="Search">
 								<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Suchen</button>
-						</form>
-						<ul class="navbar-nav">
+							</form>
+							<!-- Login -->
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								Anmelden
@@ -33,6 +37,7 @@
 									<li id="dropdown-account"><a class="dropdown-item" href="../login.php?tab=Account">Account</a></li>
 								</ul>
 							</li>
+							<!-- Warenkorb -->
 							<li class="nav-item ">
 								<a class="nav-link" href="../cart.php">
 									<span class="material-icons">
