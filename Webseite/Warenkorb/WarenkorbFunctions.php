@@ -1,11 +1,13 @@
 <?php
 
+require_once $_SERVER["DOCUMENT_ROOT"] . "/db2-buecherwurm/Webseite/Database/databaseConnection.php" ;
+
+
 /**
  * It checks if there's a Warenkorb for the given KundenID, if there is none, it creates one, if there
  * is one, it returns it.
  * 
  * @param conn The connection to the database
- * @param kundenID The ID of the customer
  * 
  * @return The ID of the Warenkorb
  */
@@ -29,7 +31,6 @@ function getOrCreateWarenkorb($conn){
  * It returns the number of orders in creation for a given customer.
  * 
  * @param conn The connection to the database
- * @param kundeID The ID of the customer
  * 
  * @return The number of orders in creation.
  */
@@ -53,7 +54,6 @@ function getNumberOfOrdersInCreation($conn) {
  * It returns the ID of the current order of the user.
  * 
  * @param conn The connection to the database
- * @param userID The ID of the user who is logged in
  * 
  * @return The ID of the current order.
  */
@@ -74,7 +74,6 @@ function getWarenkorb($conn) {
  * the userID.
  * 
  * @param conn The connection to the database
- * @param userID The ID of the user who is currently logged in.
  */
 function createWarenkorb($conn) {
     $userID = $_SESSION['userID'];
@@ -175,6 +174,25 @@ function updateItemInWarenkorb($conn, $BestellpositionID, $Menge) {
     $stmt = oci_parse($conn, "UPDATE Bestellposition SET Menge = :Menge WHERE BestellpositionID = :BestellpositionID");
     oci_bind_by_name($stmt, ':BestellpositionID', $BestellpositionID);
     oci_bind_by_name($stmt, ':Menge', $Menge);
+    oci_execute($stmt);
+}
+
+
+
+/**
+ * It updates the status of the order to "offen" and sets the RechnungsadresseID and
+ * LieferadresseID to the given values.
+ * 
+ * @param conn The connection to the database
+ * @param BestellungID The ID of the order
+ * @param RechnungsadresseID The ID of the billing address
+ * @param LieferadresseID 1
+ */
+function sendOrder($conn, $BestellungID, $RechnungsadresseID, $LieferadresseID) {
+    $stmt = oci_parse($conn, "UPDATE Bestellung SET Status = 'offen', RechnungsadresseID = :RechnungsadresseID, LieferadresseID = :LieferadresseID WHERE BestellungID = :BestellungID");
+    oci_bind_by_name($stmt, ':BestellungID', $BestellungID);
+    oci_bind_by_name($stmt, ':RechnungsadresseID', $RechnungsadresseID);
+    oci_bind_by_name($stmt, ':LieferadresseID', $LieferadresseID);
     oci_execute($stmt);
 }
 
