@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="de">
-    <?php include 'includes/head.php' ?>
+    <?php include 'head.php' ?>
 	<body >
-        <?php include 'includes/header.php' ?>
+        <?php include 'header.php' ?>
         <!--Shopping Cart
 			div mit id cart
 				div mit class table-responsive
@@ -173,6 +173,6 @@
 			</div>
 		</div>
 	</div>
-        <?php include 'includes/footer.php' ?>
+        <?php include 'footer.php' ?>
 	</body>
 </html>

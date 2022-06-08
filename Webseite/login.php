@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="de">
-    <?php include 'includes/head.php' ?>
+    <?php include 'head.php' ?>
 	<body >
-        <?php include 'includes/header.php' ?>
+        <?php include 'header.php' ?>
         <!--Login
 			div mit class container mit id login
 				form
@@ -166,6 +166,6 @@
         }
         ?>
         
-        <?php include 'includes/footer.php' ?>
+        <?php include 'footer.php' ?>
 	</body>
 </html>

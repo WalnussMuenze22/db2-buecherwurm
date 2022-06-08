@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="de">
-    <?php include 'includes/head.php' ?>
+    <?php include 'head.php' ?>
 	<body >
-        <?php include 'includes/header.php' ?>
+        <?php include 'header.php' ?>
 <div class="container" id="about">
 			<h1>Über uns</h1>
 			<p>
@@ -10,6 +10,6 @@
 				entstanden.
 			</p>
 		</div>
-        <?php include 'includes/footer.php' ?>
+        <?php include 'footer.php' ?>
 	</body>
 </html>
