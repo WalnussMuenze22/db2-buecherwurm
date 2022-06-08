@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER["DOCUMENT_ROOT"] . "/db2-buecherwurm/Webseite/Database/databaseConnection.php" ;
+require_once $_SERVER["DOCUMENT_ROOT"] . "/db2-buecherwurm/Webseite/php/databaseConnection.php" ;
 
 
 /**

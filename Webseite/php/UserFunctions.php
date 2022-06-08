@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER["DOCUMENT_ROOT"] . "/db2-buecherwurm/Webseite/Database/databaseConnection.php" ;
+require_once $_SERVER["DOCUMENT_ROOT"] . "/db2-buecherwurm/Webseite/php/databaseConnection.php" ;  
 
 /**
  * It takes a connection, an email and a password and returns true if the user is logged in and false
