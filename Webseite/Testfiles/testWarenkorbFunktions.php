@@ -1,7 +1,7 @@
 <?php
 
-require_once '../Database/databaseConnection.php';
-require_once '../Warenkorb/WarenkorbFunctions.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . "/db2-buecherwurm/Webseite/php/WarenkorbFunctions.php";
 
+echo WarenkorbFunctions::getOrCreateWarenkorb();
 
 ?>

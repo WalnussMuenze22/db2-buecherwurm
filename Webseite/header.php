@@ -32,9 +32,9 @@
 								Anmelden
 								</a>
 								<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-									<li id="dropdown-login"><a class="dropdown-item" href="login.php?tab=Login">Anmelden</a></li>
-									<li id="dropdown-register"><a class="dropdown-item" href="login.php?tab=Register">Registrieren</a></li>
-									<li id="dropdown-account"><a class="dropdown-item" href="login.php?tab=Account">Account</a></li>
+									<li id="dropdown-login"><a class="dropdown-item" href="login.php">Anmelden</a></li>
+									<li id="dropdown-register"><a class="dropdown-item" href="register.php">Registrieren</a></li>
+									<li id="dropdown-account"><a class="dropdown-item" href="account.php">Account</a></li>
 								</ul>
 							</li>
 							<!-- Warenkorb -->
@@ -45,7 +45,7 @@
 									</span>
 								</a>
 							</li>
-						</ul>						
+						</ul>
 					</div>
 				</div>
 	  		</nav>
