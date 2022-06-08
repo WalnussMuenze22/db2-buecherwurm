@@ -851,10 +851,7 @@ IS
 BEGIN
     for zeile IN
         (
-            SELECT SUM(Bestellposition.Stueckpreis * Menge) AS GESAMTPREIS
-            FROM BESTELLUNG
-            JOIN Bestellposition ON Bestellung.BestellungID = Bestellposition.BestellungID
-            WHERE (
+            SELECT  GESAMTPREIS FROM BESTELLUNG WHERE (
                 Datum BETWEEN startDatum AND endDatum
                 AND Bestellung.Status IN ('offen', 'versendet', 'zugestellt')
             )
