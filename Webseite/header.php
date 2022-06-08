@@ -2,8 +2,8 @@
 			<nav class="navbar fixed-top navbar-expand-lg bg-dark navbar-dark justify-content-between">
 				<!-- Brand -->
 				<div class="container-fluid">
-					<a class="navbar-brand" href="../index.php">
-						<img class="responsiveImg img-thumbnail" src="../images/buecherwurm.png" alt="Logo"/>
+					<a class="navbar-brand" href="index.php">
+						<img class="responsiveImg img-thumbnail" src="images/buecherwurm.png" alt="Logo"/>
 					</a>
 					<!-- Links -->
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,11 +13,11 @@
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 							<!-- Start -->
 							<li class="nav-item active">
-								<a class="nav-link active" href="../index.php" id="start-link">Start</a>
+								<a class="nav-link active" href="index.php" id="start-link">Start</a>
 							</li>
 							<!-- Über uns -->
 							<li class="nav-item">
-								<a href="../about.php" class="nav-link" id="about-link">Über uns</a>
+								<a href="about.php" class="nav-link" id="about-link">Über uns</a>
 							</li>
 						</ul>
 						<ul class="navbar-nav">
@@ -32,14 +32,14 @@
 								Anmelden
 								</a>
 								<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-									<li id="dropdown-login"><a class="dropdown-item" href="../login.php?tab=Login">Anmelden</a></li>
-									<li id="dropdown-register"><a class="dropdown-item" href="../login.php?tab=Register">Registrieren</a></li>
-									<li id="dropdown-account"><a class="dropdown-item" href="../login.php?tab=Account">Account</a></li>
+									<li id="dropdown-login"><a class="dropdown-item" href="login.php?tab=Login">Anmelden</a></li>
+									<li id="dropdown-register"><a class="dropdown-item" href="login.php?tab=Register">Registrieren</a></li>
+									<li id="dropdown-account"><a class="dropdown-item" href="login.php?tab=Account">Account</a></li>
 								</ul>
 							</li>
 							<!-- Warenkorb -->
 							<li class="nav-item ">
-								<a class="nav-link" href="../cart.php">
+								<a class="nav-link" href="cart.php">
 									<span class="material-icons">
 									shopping_cart
 									</span>
