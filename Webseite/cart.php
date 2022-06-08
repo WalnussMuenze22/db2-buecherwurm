@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="de">
-    <?php include 'head.php' ?>
+    <?php include 'includes/head.php' ?>
 	<body >
-        <?php include 'header.php' ?>
+        <?php include 'includes/header.php' ?>
         <!--Shopping Cart
 			div mit id cart
 				div mit class table-responsive
@@ -173,11 +173,6 @@
 			</div>
 		</div>
 	</div>
-		<footer class="bg-dark text-center text-white fixed-bottom">
-			<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-				© 2022 Copyright:
-				<a class="text-white" href="https://dennis-kliewer.de/dbs2praktikum">buecherwurm.de</a>
-			</div>
-		</footer>
+        <?php include 'includes/footer.php' ?>
 	</body>
 </html>

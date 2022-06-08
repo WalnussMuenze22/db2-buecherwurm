@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="de">
-    <?php include 'head.php' ?>
+    <?php include 'includes/head.php' ?>
 	<body >
-        <?php include 'header.php' ?>
+        <?php include 'includes/header.php' ?>
 		<div class="container" id="storeItems">
 			<div class="row row-cols-auto">
 				<div class="col mt-2">
@@ -307,6 +307,6 @@
 				</div>
 			</div>
 		</div>
-        <?php include 'footer.php' ?>
+        <?php include 'includes/footer.php' ?>
 	</body>
 </html>
