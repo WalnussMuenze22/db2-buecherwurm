@@ -152,7 +152,20 @@
 				  </div>
 				</div>
 			  </div>
-		</div>        
+		</div>
+
+        <?php
+        //Damit das JS von Dennis noch funktioniert
+        $tab = $_GET['tab'];
+        if($tab == "Login"){
+            echo "<script>openLogin();</script>";
+        }elseif($tab == "Register"){
+            echo "<script>openRegister();</script>";
+        }elseif($tab == "Account"){
+            echo "<script>openAccount();</script>";
+        }
+        ?>
+        
         <?php include 'footer.php' ?>
 	</body>
 </html>

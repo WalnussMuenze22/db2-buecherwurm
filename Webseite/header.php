@@ -28,9 +28,9 @@
 								Anmelden
 								</a>
 								<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-									<li id="dropdown-login"><a class="dropdown-item" onclick="openLogin();">Anmelden</a></li>
-									<li id="dropdown-register"><a class="dropdown-item" onclick="openRegister();">Registrieren</a></li>
-									<li id="dropdown-account"><a class="dropdown-item" onclick="openAccount();">Account</a></li>
+									<li id="dropdown-login"><a class="dropdown-item" href="login.php?tab=Login">Anmelden</a></li>
+									<li id="dropdown-register"><a class="dropdown-item" href="login.php?tab=Register">Registrieren</a></li>
+									<li id="dropdown-account"><a class="dropdown-item" href="login.php?tab=Account">Account</a></li>
 								</ul>
 							</li>
 							<li class="nav-item ">
