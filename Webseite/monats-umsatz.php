@@ -12,15 +12,17 @@
 
 ?>
 
-<!DOCTYPE HTML>
+<!doctype html>
 <html lang="de">
-    <head>
-        <meta charset="UTF-8">
-        <title>Monatsumsatz</title>
-    </head>
+    <?php include 'head.php' ?>
+	<body >
+        <?php include 'header.php' ?>
     <body>
-        <h1>Monatsumsatz</h1>
+    <div style="text-align: center;">
+            <h1>Monatsumsatz</h1>
         
-        <p>Der Umsatz der letzten 30 Tage beträgt <?php echo $umsatz;?>€.</p>
+            <p>Der Umsatz der letzten 30 Tage beträgt <?php echo $umsatz;?>€.</p>
+        </div>
+        <?php include 'footer.php' ?>
     </body>
 </html>
