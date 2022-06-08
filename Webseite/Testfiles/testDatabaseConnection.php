@@ -2,7 +2,6 @@
 
 require_once 'databaseConnection.php';
 
-$conn = getDatabaseConnection();
 if(!$conn){
     echo "Verbindung zur Datenbank fehlgeschlagen";
 }

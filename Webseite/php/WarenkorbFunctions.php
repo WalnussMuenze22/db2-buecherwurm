@@ -7,19 +7,18 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/db2-buecherwurm/Webseite/php/database
  * It checks if there's a Warenkorb for the given KundenID, if there is none, it creates one, if there
  * is one, it returns it.
  * 
- * @param conn The connection to the database
  * 
  * @return The ID of the Warenkorb
  */
-function getOrCreateWarenkorb($conn){
+function getOrCreateWarenkorb(){
     $kundenID = $_SESSION['userID'];
-    $NumberOfOrders = getNumberOfOrdersInCreation($conn, $kundenID);
+    $NumberOfOrders = getNumberOfOrdersInCreation(DatabaseConnection::getDatabaseConnection(), $kundenID);
     if($NumberOfOrders == 0){
-        createWarenkorb($conn, $kundenID);
-        return getWarenkorb($conn, $kundenID);
+        createWarenkorb(DatabaseConnection::getDatabaseConnection(), $kundenID);
+        return getWarenkorb(DatabaseConnection::getDatabaseConnection(), $kundenID);
     }
     elseif($NumberOfOrders == 1){
-        return getWarenkorb($conn, $kundenID);
+        return getWarenkorb(DatabaseConnection::getDatabaseConnection(), $kundenID);
     }
     else{
         throw new Exception("FEHLER: Es gibt mehr als einen Warenkorb für diesen Kunden");
@@ -30,14 +29,13 @@ function getOrCreateWarenkorb($conn){
 /**
  * It returns the number of orders in creation for a given customer.
  * 
- * @param conn The connection to the database
  * 
  * @return The number of orders in creation.
  */
-function getNumberOfOrdersInCreation($conn) {
+function getNumberOfOrdersInCreation() {
     $kundeID = $_SESSION['userID'];
     $sql = "SELECT COUNT(*) AS anzahl FROM bestellung WHERE kundenid = :kundeID AND status = 'wird erstellt'";
-    $stmt = oci_parse($conn, $sql);
+    $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), $sql);
     oci_bind_by_name($stmt, ":kundeID", $kundeID);
     if(oci_execute($stmt)){
         $row = oci_fetch_assoc($stmt);
@@ -53,13 +51,12 @@ function getNumberOfOrdersInCreation($conn) {
 /**
  * It returns the ID of the current order of the user.
  * 
- * @param conn The connection to the database
  * 
  * @return The ID of the current order.
  */
-function getWarenkorb($conn) {
+function getWarenkorb() {
     $userID = $_SESSION['userID'];
-    $stmt = oci_parse($conn, "SELECT BestellungID FROM Bestellung WHERE KundenID = :userID AND Status = 'wird erstellt'"); 
+    $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "SELECT BestellungID FROM Bestellung WHERE KundenID = :userID AND Status = 'wird erstellt'"); 
     oci_bind_by_name($stmt, ':userID', $userID);
     oci_execute($stmt);
     $row = oci_fetch_array($stmt, OCI_ASSOC+OCI_RETURN_NULLS);
@@ -73,11 +70,10 @@ function getWarenkorb($conn) {
  * It inserts a new row into the table Bestellung with the current date, the status "wird erstellt" and
  * the userID.
  * 
- * @param conn The connection to the database
  */
-function createWarenkorb($conn) {
+function createWarenkorb() {
     $userID = $_SESSION['userID'];
-    $stmt = oci_parse($conn, "INSERT INTO Bestellung (Datum, Status, KundenID) VALUES (SYSDATE, 'wird erstellt', :userID)");
+    $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "INSERT INTO Bestellung (Datum, Status, KundenID) VALUES (SYSDATE, 'wird erstellt', :userID)");
     oci_bind_by_name($stmt, ':userID', $userID);
     oci_execute($stmt);
 }
@@ -86,13 +82,12 @@ function createWarenkorb($conn) {
 /**
  * It returns an array of all items in the shopping cart.
  * 
- * @param conn The connection to the database
  * @param BestellungID The ID of the order
  * 
  * @return Array of items in the shopping cart
  */
-function getWarenkorbItems($conn, $BestellungID) {
-    $stmt = oci_parse($conn, "SELECT BestellpositionID,
+function getWarenkorbItems($BestellungID) {
+    $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "SELECT BestellpositionID,
                                     Titel,
                                     Verlag,
                                     ArtikelID,
@@ -116,13 +111,12 @@ function getWarenkorbItems($conn, $BestellungID) {
 /**
  * It returns the total price of a shopping cart.
  * 
- * @param conn The connection to the database
  * @param BestellungID The ID of the order
  * 
  * @return The total price of the order.
  */
-function getWarenkorbTotal($conn, $BestellungID) {
-    $stmt = oci_parse($conn, "SELECT Gesamtpreis FROM Bestellung WHERE BestellungID = :BestellungID");
+function getWarenkorbTotal( $BestellungID) {
+    $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "SELECT Gesamtpreis FROM Bestellung WHERE BestellungID = :BestellungID");
     oci_bind_by_name($stmt, ':BestellungID', $BestellungID);
     oci_execute($stmt);
     $row = oci_fetch_array($stmt, OCI_ASSOC+OCI_RETURN_NULLS);
@@ -133,13 +127,12 @@ function getWarenkorbTotal($conn, $BestellungID) {
 /**
  * It inserts a new row into the table Bestellposition.
  * 
- * @param conn The connection to the database
  * @param BestellungID The ID of the order
  * @param ArtikelID The ID of the article to be added to the order
  * @param Menge The amount of the item that the user wants to buy
  */
-function addItemToWarenkorb($conn, $BestellungID, $ArtikelID, $Menge) {
-    $stmt = oci_parse($conn, "INSERT INTO Bestellposition (BestellungID, ArtikelID, Menge) VALUES (:BestellungID, :ArtikelID, :Menge)");
+function addItemToWarenkorb( $BestellungID, $ArtikelID, $Menge) {
+    $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "INSERT INTO Bestellposition (BestellungID, ArtikelID, Menge) VALUES (:BestellungID, :ArtikelID, :Menge)");
     oci_bind_by_name($stmt, ':BestellungID', $BestellungID);
     oci_bind_by_name($stmt, ':ArtikelID', $ArtikelID);
     oci_bind_by_name($stmt, ':Menge', $Menge);
@@ -152,11 +145,10 @@ function addItemToWarenkorb($conn, $BestellungID, $ArtikelID, $Menge) {
  * It deletes a row from the table Bestellposition where the BestellpositionID is equal to the given
  * BestellpositionID.
  * 
- * @param conn The connection to the database
  * @param BestellpositionID The ID of the item in the shopping cart that should be deleted
  */
-function deleteItemFromWarenkorb($conn, $BestellpositionID) {
-    $stmt = oci_parse($conn, "DELETE FROM Bestellposition WHERE BestellpositionID = :BestellpositionID");
+function deleteItemFromWarenkorb($BestellpositionID) {
+    $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "DELETE FROM Bestellposition WHERE BestellpositionID = :BestellpositionID");
     oci_bind_by_name($stmt, ':BestellpositionID', $BestellpositionID);
     oci_execute($stmt);
 }
@@ -166,12 +158,11 @@ function deleteItemFromWarenkorb($conn, $BestellpositionID) {
 /**
  * It updates the amount of a product in the shopping cart.
  * 
- * @param conn The connection to the database
  * @param BestellpositionID The ID of the item in the shopping cart
  * @param Menge The new amount of the item that the user wants to buy.
  */
-function updateItemInWarenkorb($conn, $BestellpositionID, $Menge) {
-    $stmt = oci_parse($conn, "UPDATE Bestellposition SET Menge = :Menge WHERE BestellpositionID = :BestellpositionID");
+function updateItemInWarenkorb($BestellpositionID, $Menge) {
+    $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "UPDATE Bestellposition SET Menge = :Menge WHERE BestellpositionID = :BestellpositionID");
     oci_bind_by_name($stmt, ':BestellpositionID', $BestellpositionID);
     oci_bind_by_name($stmt, ':Menge', $Menge);
     oci_execute($stmt);
@@ -183,13 +174,12 @@ function updateItemInWarenkorb($conn, $BestellpositionID, $Menge) {
  * It updates the status of the order to "offen" and sets the RechnungsadresseID and
  * LieferadresseID to the given values.
  * 
- * @param conn The connection to the database
  * @param BestellungID The ID of the order
  * @param RechnungsadresseID The ID of the billing address
  * @param LieferadresseID 1
  */
-function sendOrder($conn, $BestellungID, $RechnungsadresseID, $LieferadresseID) {
-    $stmt = oci_parse($conn, "UPDATE Bestellung SET Status = 'offen', RechnungsadresseID = :RechnungsadresseID, LieferadresseID = :LieferadresseID WHERE BestellungID = :BestellungID");
+function sendOrder( $BestellungID, $RechnungsadresseID, $LieferadresseID) {
+    $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "UPDATE Bestellung SET Status = 'offen', RechnungsadresseID = :RechnungsadresseID, LieferadresseID = :LieferadresseID WHERE BestellungID = :BestellungID");
     oci_bind_by_name($stmt, ':BestellungID', $BestellungID);
     oci_bind_by_name($stmt, ':RechnungsadresseID', $RechnungsadresseID);
     oci_bind_by_name($stmt, ':LieferadresseID', $LieferadresseID);
