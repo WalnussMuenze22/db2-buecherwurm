@@ -54,10 +54,15 @@ CREATE TABLE Bestellung (
     BestellungID VARCHAR(50) PRIMARY KEY,
     Datum TIMESTAMP,
     Status VARCHAR(30) DEFAULT 'editierbar',
-    RechnungsadresseID NUMBER NOT NULL,
-    LieferadresseID NUMBER Not NULL,
+    RechnungsadresseID NUMBER,
+    LieferadresseID NUMBER,
     KundenID NUMBER NOT NULL,
-    Gesamtpreis NUMBER DEFAULT 0.0 NOT NULL
+    Gesamtpreis NUMBER DEFAULT 0.0 NOT NULL,
+    
+    CONSTRAINT editierbarOrNotNullConstraint CHECK (
+        Status = 'editierbar'
+        OR LieferadresseID <> NULL
+    )
 );
 
 -- Tabelle Adresse
