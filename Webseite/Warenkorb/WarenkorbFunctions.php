@@ -9,7 +9,8 @@
  * 
  * @return The ID of the Warenkorb
  */
-function getOrCreateWarenkorb($conn, $kundenID){
+function getOrCreateWarenkorb($conn){
+    $kundenID = $_SESSION['userID'];
     $NumberOfOrders = getNumberOfOrdersInCreation($conn, $kundenID);
     if($NumberOfOrders == 0){
         createWarenkorb($conn, $kundenID);
@@ -32,7 +33,8 @@ function getOrCreateWarenkorb($conn, $kundenID){
  * 
  * @return The number of orders in creation.
  */
-function getNumberOfOrdersInCreation($conn, $kundeID) {
+function getNumberOfOrdersInCreation($conn) {
+    $kundeID = $_SESSION['userID'];
     $sql = "SELECT COUNT(*) AS anzahl FROM bestellung WHERE kundenid = :kundeID AND status = 'wird erstellt'";
     $stmt = oci_parse($conn, $sql);
     oci_bind_by_name($stmt, ":kundeID", $kundeID);
@@ -55,7 +57,8 @@ function getNumberOfOrdersInCreation($conn, $kundeID) {
  * 
  * @return The ID of the current order.
  */
-function getWarenkorb($conn, $userID) {
+function getWarenkorb($conn) {
+    $userID = $_SESSION['userID'];
     $stmt = oci_parse($conn, "SELECT BestellungID FROM Bestellung WHERE KundenID = :userID AND Status = 'wird erstellt'"); 
     oci_bind_by_name($stmt, ':userID', $userID);
     oci_execute($stmt);
@@ -73,7 +76,8 @@ function getWarenkorb($conn, $userID) {
  * @param conn The connection to the database
  * @param userID The ID of the user who is currently logged in.
  */
-function createWarenkorb($conn, $userID) {
+function createWarenkorb($conn) {
+    $userID = $_SESSION['userID'];
     $stmt = oci_parse($conn, "INSERT INTO Bestellung (Datum, Status, KundenID) VALUES (SYSDATE, 'wird erstellt', :userID)");
     oci_bind_by_name($stmt, ':userID', $userID);
     oci_execute($stmt);

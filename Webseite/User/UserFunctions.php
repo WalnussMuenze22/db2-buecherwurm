@@ -1,10 +1,5 @@
 <?php
 
-require_once '../Database/databaseConnection.php';
-
-
-
-
 /**
  * It takes a connection, an email and a password and returns true if the user is logged in and false
  * if not.
@@ -26,15 +21,19 @@ function login($conn, $email, $password) {
     oci_execute($stmt);
     $row = oci_fetch_array($stmt, OCI_ASSOC+OCI_RETURN_NULLS);
     if ($row) {
+        // Erstelle eine Session mit dem KundenID
         session_start();
-        $_SESSION['userID'] = $row['KundenID'];
+        $userID = $row['KundenID'];
+        $_SESSION['userID'] = $userID;
+        //Setzte LastLogin auf aktuelle Zeit
+        $stmt = oci_parse($conn, "UPDATE Account SET LastLogin = SYSDATE WHERE AccountID = (SELECT AccountID FROM Kunde WHERE KundenID = :userID)");
+        oci_bind_by_name($stmt, ':userID', $userID);
+        oci_execute($stmt);
         return true;
     } else {
         return false;
     }
 }
-
-
 
 
 /**
@@ -86,3 +85,5 @@ function register($conn, $email, $password){
     session_start();
     $_SESSION['userID'] = $kundenID;
 }
+
+?>
