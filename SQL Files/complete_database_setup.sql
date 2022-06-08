@@ -845,14 +845,16 @@ end;
 
 
 
-
 CREATE OR REPLACE FUNCTION show_period_revenue(startDatum DATE, endDatum DATE) return Number
 IS
     umsatz Number := 0;
 BEGIN
     for zeile IN
         (
-            SELECT  GESAMTPREIS FROM BESTELLUNG WHERE (
+            SELECT SUM(Bestellposition.Stueckpreis * Menge) AS GESAMTPREIS
+            FROM BESTELLUNG
+            JOIN Bestellposition ON Bestellung.BestellungID Bestellposition.BestellungID
+            WHERE (
                 Datum BETWEEN startDatum AND endDatum
                 AND Bestellung.Status IN ('offen', 'versendet', 'zugestellt')
             )
