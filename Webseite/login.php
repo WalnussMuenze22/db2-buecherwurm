@@ -23,7 +23,7 @@
 							button submit mit class btn btn-success
 		-->
 		<div class="container" id="login">
-				<form>
+				<form action="/php/login-handling.php" method="post" autocomplete="on">
 					<div class="form-floating mb-3">						
 						<input type="email" class="form-control" id="login_email" placeholder="example@domain.sub">
 						<label for="login_email" class="form-label">Email Addresse</label>
@@ -38,7 +38,7 @@
 						<label for="login_check" class="form-check-label" >Angemeldet bleiben</label>
 					</div>
 					<div class="row">
-						<div class="col"><button type="button" class="btn btn-link" onclick="returnToMain();">Zurrück</button></div>
+						<div class="col"><button type="button" class="btn btn-link" onclick="returnToMain();">Zurück</button></div>
 						<div class="col"><button type="submit" class="btn btn-success">Login</button></div>
 					</div>
 				  </form>	  
@@ -76,7 +76,7 @@
 								button submit mit class btn btn-success
 		-->
 		<div class="container" id="register">
-			<form class="row g-3">
+			<form class="row g-3" action="/php/register-handling.php" method="post" autocomplete="on">
 				<div class="col-md-6">
 					<label for="reg_email" class="form-label">E-Mail</label>
 					<input type="email" class="form-control" id="reg_email">
