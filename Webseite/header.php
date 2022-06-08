@@ -23,8 +23,8 @@
 				</ul>
 				<ul class="navbar-nav">
 					<!-- Suche -->
-					<form class="d-flex">
-						<input class="form-control me-2" type="search" placeholder="Suchbegriff..." aria-label="Search">
+					<form class="d-flex" action="search.php" method="get">
+						<input class="form-control me-2" type="search" placeholder="Suchbegriff..." aria-label="Search" name="searchphrase">
 						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Suchen</button>
 					</form>
 					<!-- Login -->
