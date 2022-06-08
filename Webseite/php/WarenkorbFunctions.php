@@ -6,8 +6,6 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/db2-buecherwurm/Webseite/php/database
 class WarenkorbFunctions
 {
 
-
-
     /**
      * It checks if there's a Warenkorb for the given KundenID, if there is none, it creates one, if there
      * is one, it returns it.

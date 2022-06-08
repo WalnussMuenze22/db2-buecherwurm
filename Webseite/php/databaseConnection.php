@@ -1,8 +1,10 @@
 <?php
-class DatabaseConnection {
-    private static $conn;
+class DatabaseConnection
+{
+  private static $conn;
 
-private static function openDatabaseConnection(){
+  private static function openDatabaseConnection()
+  {
     $db_username = "inf2305";
     $db_password = "P0ahW8Jq+P6EwXrv8stQkYFUfNDl+v";
     $tns = "
@@ -15,21 +17,21 @@ private static function openDatabaseConnection(){
         )
       )
       ";
-    
+
     $conn = oci_pconnect($db_username, $db_password, $tns);
     if (!$conn) {
-        $e = oci_error();
-        trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+      $e = oci_error();
+      trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
     }
     return $conn;
-}
+  }
 
 
-static function getDatabaseConnection(){
-    if(self::$conn == null){
-        self::$conn = self::openDatabaseConnection();
+  static function getDatabaseConnection()
+  {
+    if (self::$conn == null) {
+      self::$conn = self::openDatabaseConnection();
     }
+    return self::$conn;
+  }
 }
-
-}
-?>

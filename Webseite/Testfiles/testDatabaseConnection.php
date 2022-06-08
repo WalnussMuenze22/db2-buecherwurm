@@ -1,12 +1,12 @@
 <?php
 
-require_once 'databaseConnection.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . "/db2-buecherwurm/Webseite/php/databaseConnection.php";
 
-if(!$conn){
-    echo "Verbindung zur Datenbank fehlgeschlagen";
+if(DatabaseConnection::getDatabaseConnection()){
+    echo "Database Connection successful";
 }
 else{
-    echo "Verbindung zur Datenbank erfolgreich";
+    echo "Database Connection failed";
 }
 
 ?>
