@@ -9,4 +9,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="scripts/menge.js"></script>
     <script src="scripts/switchPages.js"></script>
+    <?php
+	session_start();
+	if ($_SESSION["userID"] != NULL) {
+		echo '<script>var loggedIn = true;</script>';
+	} else {
+		echo '<script>var loggedIn = false;</script>';
+	}
+	?>
 </head>

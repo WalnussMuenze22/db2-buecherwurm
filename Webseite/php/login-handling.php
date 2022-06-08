@@ -3,28 +3,30 @@
     
     $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
     $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
-    
-    
+
     $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(),
-        "SELECT KundenID, password AS passwordHash
+        "SELECT KundenID, passwortHash
         FROM Kunde
         JOIN Account on Kunde.AccountID = Account.AccountID
         WHERE Email = :email
-        ;"
+        "
     );
     
     oci_bind_by_name($stmt, ':email', $email);
     oci_execute($stmt);
+
     
-    if ($row = oci_fetch_row($stid)) {
+
+    if ($row = oci_fetch_array($stmt, OCI_ASSOC + OCI_RETURN_NULLS)) {
         // Email gefunden
+
         
-        if (password_verify($password, $row["passwordHash"])) {
+        if (password_verify($password, $row["PASSWORTHASH"])) {
             // Passwort richtig
             
             // Erstelle eine Session mit dem KundenID
             session_start();
-            $userID = $row['KundenID'];
+            $userID = $row['KUNDENID'];
             $_SESSION['userID'] = $userID;
             
             //Setzte LastLogin auf aktuelle Zeit

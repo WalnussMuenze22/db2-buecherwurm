@@ -21,20 +21,24 @@ class UserFunctions
                                 WHERE Email = :email AND PasswortHash = :password");
         oci_bind_by_name($stmt, ':email', $email);
         oci_bind_by_name($stmt, ':password', $passwordHash);
-        oci_execute($stmt);
-        $row = oci_fetch_array($stmt, OCI_ASSOC + OCI_RETURN_NULLS);
-        if ($row) {
-            // Erstelle eine Session mit dem KundenID
-            session_start();
-            $userID = $row['KundenID'];
-            $_SESSION['userID'] = $userID;
-            //Setzte LastLogin auf aktuelle Zeit
-            $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "UPDATE Account SET LastLogin = SYSDATE WHERE AccountID = (SELECT AccountID FROM Kunde WHERE KundenID = :userID)");
-            oci_bind_by_name($stmt, ':userID', $userID);
-            oci_execute($stmt);
-            return true;
+        if (oci_execute($stmt)) {
+            $row = oci_fetch_array($stmt, OCI_ASSOC + OCI_RETURN_NULLS);
+            if ($row) {
+                // Erstelle eine Session mit dem KundenID
+                session_start();
+                $userID = $row['KundenID'];
+                $_SESSION['userID'] = $userID;
+                //Setzte LastLogin auf aktuelle Zeit
+                $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "UPDATE Account SET LastLogin = SYSDATE WHERE AccountID = (SELECT AccountID FROM Kunde WHERE KundenID = :userID)");
+                oci_bind_by_name($stmt, ':userID', $userID);
+                oci_execute($stmt);
+                return true;
+            } else {
+                return false;
+            }
         } else {
-            return false;
+            $error = oci_error($stmt);
+            throw new Exception($error['message']);
         }
     }
 
@@ -63,7 +67,9 @@ class UserFunctions
         $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "INSERT INTO Account (PasswortHash,  EMail, AccountTyp, LetzterLogin, Aktiv) VALUES (:passwordHash, :email, 'Kunde', SYSDATE, '1')");
         oci_bind_by_name($stmt, ':passwordHash', $passwordHash);
         oci_bind_by_name($stmt, ':email', $email);
-        oci_execute($stmt);
+        if(!oci_execute($stmt)){
+            throw new Exception("Account konnte nicht angelegt werden");
+        }
 
         //AccountID ermitteln
         $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "SELECT AccountID FROM Account WHERE EMail = :email");

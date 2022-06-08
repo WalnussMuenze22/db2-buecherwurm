@@ -25,17 +25,13 @@
 		<div class="container Freed" id="login">
 				<form action="/php/login-handling.php" method="post" autocomplete="on">
 					<div class="form-floating mb-3">						
-						<input type="email" class="form-control" id="login_email" placeholder="example@domain.sub">
+						<input type="email" class="form-control" id="login_email" placeholder="example@domain.sub" name="email">
 						<label for="login_email" class="form-label">Email Addresse</label>
 						<div id="emailHelp" class="form-text">Diese Daten werden niemals geteilt!</div>
 					</div>
 					<div class="form-floating mb-3">
-						<input type="password" class="form-control" id="login_password" placeholder="Password">
+						<input type="password" class="form-control" id="login_password" placeholder="Password" name="password">
 						<label for="login_password" class="form-label">Passwort</label>
-					</div>
-					<div class="mb-3 form-check">
-						<input type="checkbox" class="form-check-input" id="login_check">
-						<label for="login_check" class="form-check-label" >Angemeldet bleiben</label>
 					</div>
 					<div class="row">
 						<div class="col"><button type="submit" class="btn btn-success">Login</button></div>
