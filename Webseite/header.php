@@ -1,5 +1,19 @@
-<header>
+<?php
+require_once $_SERVER["DOCUMENT_ROOT"] . "/php/databaseConnection.php";
 
+session_start();
+$isloggedIn = isset($_SESSION['userID']);
+
+if ($isloggedIn) {
+	$stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "SELECT EMail FROM Kunde join Account on Kunde.AccountID = Account.AccountID WHERE Kunde.KundenID = :kundeID");
+	oci_bind_by_name($stmt, ":kundeID", $_SESSION['userID']);
+	oci_execute($stmt);
+	$row = oci_fetch_array($stmt);
+	$email = $row['EMAIL'];
+}
+?>
+
+<header>
 	<nav class="navbar fixed-top navbar-expand-lg bg-dark navbar-dark justify-content-between">
 		<!-- Brand -->
 		<div class="container-fluid">
@@ -30,19 +44,25 @@
 					<!-- Login -->
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							Anmelden
+							<?php
+							if ($isloggedIn) {
+								echo $email;
+							} else {
+								echo "Login";
+							}
+							?>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-		            	<?php
-							session_start();
-							if(isset($_SESSION['userID'])){
+							<?php
+
+							if ($isloggedIn) {
 								echo '<li id="dropdown-logout"><a class="dropdown-item" href="/php/logout-handling.php">Logout</a></li>
 									  <li id="dropdown-account"><a class="dropdown-item" href="account.php">Account</a></li>';
 							} else {
 								echo '<li id="dropdown-login"><a class="dropdown-item" href="login.php">Anmelden</a></li>
 									  <li id="dropdown-register"><a class="dropdown-item" href="register.php">Registrieren</a></li>';
 							}
-						?>
+							?>
 						</ul>
 					</li>
 					<!-- Warenkorb -->
