@@ -9,7 +9,7 @@
 			<?php
 				require_once $_SERVER["DOCUMENT_ROOT"] . "/php/databaseConnection.php";
 
-				$stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "SELECT ArtikelID, Titel, Beschreibung, AutorenListe, Verlag, Preis FROM Buchinformationen ORDER BY Titel ASC");
+				$stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "SELECT AnzahlVerfuegbar, ArtikelID, Titel, Beschreibung, AutorenListe, Verlag, Preis FROM Buchinformationen ORDER BY Titel ASC");
 				oci_execute($stmt);
 				while($row = oci_fetch_array($stmt, OCI_ASSOC + OCI_RETURN_NULLS)){
 					$autorenListe = explode('#', $row["AUTORENLISTE"]);
@@ -25,6 +25,7 @@
 							<li class="list-group-item" id="autor">Autor: '.implode(', ', $autorenListe).'</li>
 							<li class="list-group-item " id="verlag">Verlag: '.$row['VERLAG'].'</li>
 							<li class="list-group-item" id="preis">Preis: '.$row['PREIS'].'€</li>
+							<li class="list-group-item" id="anzahlVerfuegbar">Verfügbar: '.$row['ANZAHLVERFUEGBAR'].'</li>
 						</ul>
 						<div class="card-body">
 							<form action="/php/add-to-cart-handling.php" method="post" autofill="off">

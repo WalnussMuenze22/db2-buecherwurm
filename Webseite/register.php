@@ -45,6 +45,7 @@
 					<label for="reg_password" class="form-label">Passwort</label>
 					<input type="password" class="form-control" id="reg_password" name="password">
 				</div>
+				<!--
 				<div class="col-12">
 					<label for="reg_adress" class="form-label">Adresse</label>
 					<input type="text" class="form-control" id="reg_adress" placeholder="Straße. Nummer">
@@ -69,6 +70,7 @@
 					</label>
 				  </div>
 				</div>
+-->
 				<div class="col-12">
 					<div class="row">
 						<div class="col"><button type="submit" class="btn btn-success">Registrieren</button></div>

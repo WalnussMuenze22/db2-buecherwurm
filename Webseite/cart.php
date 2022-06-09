@@ -85,8 +85,8 @@
 							?>
 						</td>
 						<td>
-							<form>
-								<button type="button" class="btn btn-success checkoutWidth"><img src="images/checkout.png" alt="Checkout"></button>
+							<form action="/php/send-order-handling.php" method="post">
+								<button type="submit" class="btn btn-success checkoutWidth"><img src="images/checkout.png" alt="Checkout"></button>
 							</form>
 						</td>
 					</tr>
