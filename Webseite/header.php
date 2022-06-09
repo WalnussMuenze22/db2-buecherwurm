@@ -33,9 +33,16 @@
 							Anmelden
 						</a>
 						<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-							<li id="dropdown-login"><a class="dropdown-item" href="login.php">Anmelden</a></li>
-							<li id="dropdown-register"><a class="dropdown-item" href="register.php">Registrieren</a></li>
-							<li id="dropdown-account"><a class="dropdown-item" href="account.php">Account</a></li>
+		            	<?php
+							session_start();
+							if(isset($_SESSION['userID'])){
+								echo '<li id="dropdown-logout"><a class="dropdown-item" href="/php/logout-handling.php">Logout</a></li>
+									  <li id="dropdown-account"><a class="dropdown-item" href="account.php">Account</a></li>';
+							} else {
+								echo '<li id="dropdown-login"><a class="dropdown-item" href="login.php">Anmelden</a></li>
+									  <li id="dropdown-register"><a class="dropdown-item" href="register.php">Registrieren</a></li>';
+							}
+						?>
 						</ul>
 					</li>
 					<!-- Warenkorb -->
