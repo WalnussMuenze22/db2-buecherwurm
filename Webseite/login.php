@@ -26,7 +26,7 @@
 				<form action="/php/login-handling.php" method="post" autocomplete="on">
 					<div class="form-floating mb-3">						
 						<input type="email" class="form-control" id="login_email" placeholder="example@domain.sub" name="email">
-						<label for="login_email" class="form-label">Email Addresse</label>
+						<label for="login_email" class="form-label">E-Mail-Addresse</label>
 						<div id="emailHelp" class="form-text">Diese Daten werden niemals geteilt!</div>
 					</div>
 					<div class="form-floating mb-3">
