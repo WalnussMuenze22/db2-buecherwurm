@@ -30,7 +30,7 @@
             $_SESSION['userID'] = $userID;
             
             //Setzte LastLogin auf aktuelle Zeit
-            $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "UPDATE Account SET LastLogin = SYSDATE WHERE AccountID = (SELECT AccountID FROM Kunde WHERE KundenID = :userID)");
+            $stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "UPDATE Account SET LetzterLogin = SYSDATE WHERE AccountID = (SELECT AccountID FROM Kunde WHERE KundenID = :userID)");
             oci_bind_by_name($stmt, ':userID', $userID);
             oci_execute($stmt);
             

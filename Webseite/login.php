@@ -3,29 +3,6 @@
     <?php include 'head.php' ?>
 	<body >
         <?php include 'header.php' ?>
-        <!--Login
-			div mit class container mit id login
-				form
-					div mit class form-floating mb-3
-						input email mit class form-control mit id login_email
-						label mit for login_email mit class form-label
-						div mit id emailHelp mit class form-text
-					div mit class form-floating mb-3
-						input password mit class form-control mit id login_password
-						label mit for login_password mit class form-label
-					div mit class mb-3 form-check
-						input checkbox mit class form-check-input mit id login_check
-						label mit for login_check mit class form-check-label
-					div mit class row
-						div mit class col
-							button mit class btn btn-link onclick returnToMain();
-						div mit class col
-							button submit mit class btn btn-success
-		-->
-
-
-
-
 		<div class="container Freed" id="login">
 		<?php
 		if(filter_input(INPUT_GET, "login", FILTER_SANITIZE_SPECIAL_CHARS) == 'failed'){

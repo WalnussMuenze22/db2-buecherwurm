@@ -27,8 +27,8 @@ if ($isloggedIn) {
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<!-- Start -->
-					<li class="nav-item active">
-						<a class="nav-link active" href="index.php" id="start-link">Start</a>
+					<li class="nav-item">
+						<a class="nav-link" href="index.php" id="start-link">Start</a>
 					</li>
 					<!-- Über uns -->
 					<li class="nav-item">

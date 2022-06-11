@@ -34,7 +34,7 @@
 						while ($row = oci_fetch_array($stmt, OCI_ASSOC)) {
 							echo '
 							<ul class="list-group">
-								<li class="list-group-item"><b>Bestellung:</b> '.$row["BESTELLUNGID"].' <b>Gesamtpreis: </b>' .$row["GESAMTPREIS"].'<b>      Status:</b> '.$row["STATUS"].'</li></li>
+								<li class="list-group-item"><b>Bestellung:</b> '.$row["BESTELLUNGID"].' <b>Gesamtpreis: </b>' .$row["GESAMTPREIS"].'€<b>      Status:</b> '.$row["STATUS"].'</li></li>
 									<ul class="ligroupst-">';
 									$stmt2 = oci_parse(DatabaseConnection::getDatabaseConnection(), "SELECT Titel, Menge, Stueckpreis, (Menge*Stueckpreis) AS Gesamtpreis
 																										FROM Bestellposition
@@ -44,7 +44,7 @@
 									oci_execute($stmt2);
 									while ($row2 = oci_fetch_array($stmt2, OCI_ASSOC)) {
 										echo '
-										<li class="list-group-item"><b>Buch:</b> '.$row2["TITEL"].' <b>Anzahl: </b>' .$row2["MENGE"].'<b> Stückpreis: </b>' .$row2["STUECKPREIS"].'<b> Gesamtpreis: </b>' .$row2["GESAMTPREIS"].'</li>
+										<li class="list-group-item"><b>Buch:</b> '.$row2["TITEL"].' <b>Anzahl: </b>' .$row2["MENGE"].'<b> Stückpreis: </b>' .$row2["STUECKPREIS"].'€<b> Gesamtpreis: </b>' .$row2["GESAMTPREIS"].'€</li>
 
 										';
 									}
