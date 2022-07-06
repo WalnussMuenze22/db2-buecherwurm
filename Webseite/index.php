@@ -12,7 +12,10 @@
 				$stmt = oci_parse(DatabaseConnection::getDatabaseConnection(), "SELECT AnzahlVerfuegbar, ArtikelID, Titel, Beschreibung, AutorenListe, Verlag, Preis 
 																				FROM Buchinformationen
 																				ORDER BY Titel ASC");
-				oci_execute($stmt);
+				if(oci_execute($stmt) == false) {
+					echo "Error executing query";
+					exit;
+				}
 				while($row = oci_fetch_array($stmt, OCI_ASSOC + OCI_RETURN_NULLS)){
 					$autorenListe = explode('#', $row["AUTORENLISTE"]);
 					
