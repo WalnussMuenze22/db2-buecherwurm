@@ -27,23 +27,7 @@
 					</tr>
 				</thead>
 				<tbody>
-				<tr>
-                    	<th scope="row" id="art_nr">-3,5</th>
-                    	<td id="art_title">Waschmaschine</td>
-                    	<td id="art_author"></td>
-                    	<td>
-                        	<form>
-                            	<input type="text" class="form-control mengeAktiv" value="42" id="menge" disabled="">               
-                        	</form>
-                    	</td>
-                    	<td id="gesamtpreis">21000 €</td>
-                    	<td>
-                        	<form action="/php/remove-bestellposition-handling.php" method="post">
-								<input type="number" name="bestellpositionId" value="' . $row['BESTELLPOSITIONID'] . '" style="display: none;">
-                            	<button type="submit" class="btn btn-danger checkoutWidth" id="entfernen">Entfernen</button>
-                        	</form>
-                    	</td>
-                  	</tr>
+
 
 
 					<?php
@@ -61,9 +45,6 @@
 					while ($row = oci_fetch_array($stmt, OCI_ASSOC + OCI_RETURN_NULLS)) {
 						$autorenListe = explode('#', $row["AUTORENLISTE"]);
 						echo '
-
-
-						
                 	<tr>
                     	<th scope="row" id="art_nr">' . $row['ARTIKELID'] . '</th>
                     	<td id="art_title">' . $row['TITEL'] . '</td>
@@ -73,7 +54,7 @@
                             	<input type="text" class="form-control mengeAktiv" value="' . $row['MENGE'] . '" id="menge" disabled="">               
                         	</form>
                     	</td>
-                    	<td id="gesamtpreis">32,97 €</td>
+                    	<td id="gesamtpreis">' . $row['GESAMTPREIS'] . ' €</td>
                     	<td>
                         	<form action="/php/remove-bestellposition-handling.php" method="post">
 								<input type="number" name="bestellpositionId" value="' . $row['BESTELLPOSITIONID'] . '" style="display: none;">
@@ -100,7 +81,7 @@
 							oci_bind_by_name($stmt, ':kundenID', $_SESSION['userID']);
 							oci_execute($stmt);
 							$row = oci_fetch_array($stmt, OCI_ASSOC + OCI_RETURN_NULLS);
-							echo ' 21032,97  €';
+							echo $row['SUMME'] . ' €';
 							?>
 						</td>
 						<td>
